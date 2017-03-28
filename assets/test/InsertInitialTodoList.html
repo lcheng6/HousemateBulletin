@@ -1,0 +1,124 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Nothing but insertions</title>
+</head>
+<body>
+
+<script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDibHtRsisWAscAOlnMHEED--nNYn-o_3A",
+    authDomain: "housematebulletin.firebaseapp.com",
+    databaseURL: "https://housematebulletin.firebaseio.com",
+    storageBucket: "housematebulletin.appspot.com",
+    messagingSenderId: "112460771425"
+  };
+  firebase.initializeApp(config);
+
+  var todoLists = firebase.database().ref("todolists");
+
+	todoLists.push({
+	    title: "Initial TodoList 1",
+	    items: [ {
+	    	order: 0,
+	    	priority: 2,
+	    	description: "Todo #1",
+	    	assignee: null,
+	    	completed: false
+	    },
+	    {
+	    	order: 1,
+	    	priority: 2,
+	    	description: "Todo #2",
+	    	assignee: null,
+	    	completed: false
+	    },
+	    {
+	    	order: 2,
+	    	priority: 2,
+	    	description: "Todo #3",
+	    	assignee: null,
+	    	completed: false
+	    },
+	    {
+	    	order: 3,
+	    	priority: 2,
+	    	description: "Todo #4",
+	    	assignee: null,
+	    	completed: false
+	    },
+	    {
+	    	order:4,
+	    	priority: 2,
+	    	description: "Todo #4",
+	    	assignee: null,
+	    	completed: false
+	    },
+	    {
+	    	order:5,
+	    	priority: 2,
+	    	description: "Todo #5",
+	    	assignee: null,
+	    	completed: false
+	    },
+	    ],
+	    dateAdded:firebase.database.ServerValue.TIMESTAMP
+	});
+		
+	todoLists.push({
+	    title: "Initial TodoList 2",
+	    items: [ {
+	    	order: 0,
+	    	priority: 2,
+	    	description: "Bring Meat",
+	    	assignee: null,
+	    	completed: false
+	    },
+	    {
+	    	order: 1,
+	    	priority: 2,
+	    	description: "Get gas",
+	    	assignee: null,
+	    	completed: false
+	    },
+	    {
+	    	order: 2,
+	    	priority: 2,
+	    	description: "Buy Ice",
+	    	assignee: null,
+	    	completed: false
+	    },
+	    {
+	    	order: 3,
+	    	priority: 2,
+	    	description: "Bring Beer",
+	    	assignee: null,
+	    	completed: false
+	    },
+	    {
+	    	order:4,
+	    	priority: 2,
+	    	description: "Build Music List",
+	    	assignee: null,
+	    	completed: false
+	    },
+	    {
+	    	order:5,
+	    	priority: 2,
+	    	description: "Clear Deck",
+	    	assignee: null,
+	    	completed: false
+	    },
+	    ],
+	    dateAdded:(firebase.database.ServerValue.TIMESTAMP )
+	});
+
+</script>
+
+
+</body>
+</html>
