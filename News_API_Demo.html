@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>News</title>
+</head>
+
+<body>
+  <!-- Retrieved data will be dumped here -->
+  <div class="news">
+  </div>
+
+
+
+  <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <script type="text/javascript">
+    // This is our API key
+    var APIKey = "546c1558514e4fc7b4570dbf4c3ea48c";
+
+    // Here we are building the URL we need to query the database
+    var queryURL = "https://newsapi.org/v1/articles?source=the-next-web&sortBy=latest&apiKey=" + APIKey;
+
+    // Here we run our AJAX call to the News API
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+      })
+      // We store all of the retrieved data inside of an object called "response"
+      .done(function(response) {
+
+        var myArticles = response.articles;
+        console.log(myArticles.length);
+
+        for (var i = 0; i < myArticles.length; i++) {
+          var til = $('<h1>').text("Title: " + myArticles[i].title);
+          var aut = $('<p>').text("Author: " + myArticles[i].author);
+          var desc = $('<p>').text("Description: " + myArticles[i].description);
+          var separator = $('<hr>');
+
+          $('.news').append(til)
+                    .append(aut)
+                    .append(desc)
+                    .append(separator);
+      }
+
+  })
+      .fail(function() {
+    console.log( "error" );
+  });
+  </script>
+</body>
+
+</html>
