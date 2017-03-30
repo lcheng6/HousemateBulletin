@@ -1,46 +1,84 @@
 
-  <!DOCTYPE html>
-  <html>
-    <head>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-      <!--Let browser know website is optimized for mobile-->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <link rel="stylesheet" href="./style.css">
-    </head>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--Let browser know website is optimized for mobile-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Merriweather|Oswald|Poppins|Roboto+Slab" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+  </head>
 
-    <body>
-      <div class="row bk-blk">
-        <div class="col">
-          <ul class="nav nav-tabs">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Active</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
-          </ul>
-        </div>
-        <div class="row">
-          <div class="col 3">
-            <div class="city"></div>
-            <div class="wind"></div>
-            <div class="humidity"></div>
-            <div class="temp"></div>
-            <div class="description"></div>
-            <div id="weatherIcon"></div>
+  <body>
+    <div class="container-fluid" id="main">
+      <div class="row">
+        <div class="col-12">
+          <div class="top-shelf"></div>
+          <div class="row bk-blk no-gutters">
+            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12">
+              <a class="logo" href="#">House Bulletin</a>
+            </div>
+            <div class="col-xl-9 col-lg-9 col-md-8 col-sm-12">
+              <ul class="nav nav-tabs justify-content-end">
+                <li class="nav-item"><a class="nav-link" href="#">Log Out</a></li>
+                <li class="nav-item"><a class="nav-link active" href="#">Feed</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+                <li class="nav-item"><a class="nav-link disabled" href="#">Link</a></li>
+              </ul>
+            </div>
           </div>
-          <div class="col 6"></div>
+          <div class="row no-gutters">
+            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4">
+              <div class="list-group">
+                <div class="list-group-item city" id="data-header">Local Data</div>
+                <div class="list-group-item city">city</div>
+                <div class="list-group-item wind">wind</div>
+                <div class="list-group-item humidity">humidy</div>
+                <div class="list-group-item temp">temp</div>
+                <div class="list-group-item description">description</div>
+                <div class="list-group-item" id="weatherIcon">weather icon</div>
+              </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-7 col-sm-8">
+              <div class="card">
+                <div class="card framed">
+                  <div class="card-header">
+                    Makers on the march
+                  </div>
+                  <img class="card-img-top img-fluid" src="https://static1.squarespace.com/static/50e96965e4b0955e46001fcd/50e9a546e4b01058545b70f9/56daf5accf80a1b2c9a1a9c2/1471935741760/?format=1500w" alt="Card image cap">
+                  <div class="card-footer">
+                    <small class="text-muted">03/27/2017 3:14 pm</small>
+                    <br><small class="text-muted">Techshop - Mobile, AL</small>
+                  </div>
+                  <div class="card-block">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  </div>
+                </div>
+
+                <div class="card framed">
+                  <div class="card-header">
+                    Makers on the march... Again!
+                  </div>
+                  <img class="card-img-top img-fluid" src="http://www.tbo.com/storyimage/TB/20141218/ARTICLE/141219308/EP/1/1/EP-141219308.jpg" alt="Card image cap">
+                  <img class="card-img-top img-fluid" src="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/inc934L1qZ2g/v2/-1x-1.jpg" alt="Card image cap">
+                  <div class="card-footer">
+                    <small class="text-muted">03/27/2017 6:34 pm</small>
+                    <br><small class="text-muted">Techshop - Mobile, AL</small>
+                  </div>
+                  <div class="card-block">
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore error ad id placeat autem, harum mollitia perspiciatis illo eos ab, quam accusantium quae et a atque laborum ratione molestiae accusamus.</p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
 
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-    </body>
-  </html>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  </body>
+</html>
