@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Nothing but Photo Posts</title>
+	<form id="image-form" action="#">
+      <label>Title</label>
+      <input type="text" id="post_title">
+      <label>Description</label>
+      <input type="text" id="post_description">
+      <label>Source</label>
+      <input type="text" id="post_source">
+      <input id="mediaCapture" type="file" accept="image/*,capture=camera">
+      <button id="submitImage" title="Add an image" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--amber-400 mdl-color-text--white">
+        <i class="material-icons">image</i>
+      </button>
+    </form>
+    <div id="messages">
+        <!-- <span id="message-filler"></span> -->
+    </div>
+</head>
+<body>
+<script src="./jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
+<script>
+ // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDibHtRsisWAscAOlnMHEED--nNYn-o_3A",
+    authDomain: "housematebulletin.firebaseapp.com",
+    databaseURL: "https://housematebulletin.firebaseio.com",
+    storageBucket: "housematebulletin.appspot.com",
+    messagingSenderId: "112460771425"
+  };
+  firebase.initializeApp(config);
+</script>
+<script src="./Board.js"></script>
+<!-- <script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
+<script>
+ // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDibHtRsisWAscAOlnMHEED--nNYn-o_3A",
+    authDomain: "housematebulletin.firebaseapp.com",
+    databaseURL: "https://housematebulletin.firebaseio.com",
+    storageBucket: "housematebulletin.appspot.com",
+    messagingSenderId: "112460771425"
+  };
+  firebase.initializeApp(config);
+  var postsRef = firebase.database().ref("posts");
+  var LOADING_IMAGE_URL = 'https://www.google.com/images/spin-32.gif';
+  var storage = firebase.storage();
+  var database = firebase.database();
+  var testFile = "./bbq01.jpg";
+  var uploadAnImage = function(event) {
+		// if(!(filename.type.match('image.*'))) {
+		// 	console.log('not an image');
+		// }
+		event.preventDefault();
+
+		
+		var file = event.target.files[0];
+
+		postsRef.push({
+			sourceName:"Liang Cheng",
+			imageUrl: LOADING_IMAGE_URL,
+			message:"Test Message 1",
+			photoUrl: null,
+		}).then(function(data) {
+			var filePath = "images" + '/' + data.key + '/' + file.name;
+			console.log("file name: " + file);
+			return storage.ref(filePath).put(file).then(function(snapshot) {
+				var fullPath = snapshot.metadata.fullPath;
+				return data.update({imageUrl: this.storage.ref(fullPath).toString()});
+			}.bind(this));
+		}).catch(function(error) {
+			console.error('There was an error uploading a file: ', error);
+		});
+
+	}
+
+
+  //shortcuts to DOM Elements: 
+  this.imageForm = document.getElementById('image-form');
+  this.mediaCapture = document.getElementById('mediaCapture');
+  this.submitImageButton = document.getElementById('submitImage');
+
+  // Events for image upload.
+  this.submitImageButton.addEventListener('click', function(e) {
+    e.preventDefault();
+    this.mediaCapture.click();
+  }.bind(this));
+  this.mediaCapture.addEventListener('change', uploadAnImage);
+
+
+	//uploadAnImage('./InsertInitialPhotoPosts.js')
+</script> -->
+</body>
+
+</html>

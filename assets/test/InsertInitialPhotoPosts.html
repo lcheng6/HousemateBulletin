@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Nothing but Photo Posts</title>
+</head>
+<body>
+<script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
+<script>
+ // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDibHtRsisWAscAOlnMHEED--nNYn-o_3A",
+    authDomain: "housematebulletin.firebaseapp.com",
+    databaseURL: "https://housematebulletin.firebaseio.com",
+    storageBucket: "housematebulletin.appspot.com",
+    messagingSenderId: "112460771425"
+  };
+  firebase.initializeApp(config);
+  var postsRef = firebase.database().ref("posts");
+  var LOADING_IMAGE_URL = 'https://www.google.com/images/spin-32.gif';
+  var storage = firebase.storage();
+  var database = firebase.database();
+
+	var uploadAnImage = function(filename) {
+		// if(!(filename.type.match('image.*'))) {
+		// 	console.log('not an image');
+		// }
+		this.postsRef.push({
+			sourceName:"Liang Cheng",
+			imageUrl: LOADING_IMAGE_URL,
+			message:"Test Message 1",
+			photoUrl: null,
+		}).then(function(data) {
+			var filePath = "images" + '/' + data.key + '/' + filename;
+		})
+
+	}
+
+	uploadAnImage('./InsertInitialPhotoPosts.js')
+</script>
+</body>
+
+</html>
