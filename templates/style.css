@@ -333,3 +333,55 @@ img {
 	background:#666;
 	transition: all 0.3s;
 }
+
+
+/*submit photo button*/
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+/*chips*/
+
+.chip {
+    /*display: inline-block;*/
+    padding: 0 20px;
+    height: 23px;
+    font-size: 16px;
+    /*line-height: 50px;*/
+    border-radius: 20px;
+    background-color: grey;
+    color: white;
+    font-family: Poppins;
+}
+
+#input_container {
+    position:relative;
+    /*padding:0;
+    margin:0;*/
+}
+#todo_title {
+    margin:0;
+    padding-left: 30px;
+}
+#input_chip {
+    position:absolute;
+    bottom:8px;
+    right:10px;
+}

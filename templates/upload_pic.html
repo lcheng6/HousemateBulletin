@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!--Let browser know website is optimized for mobile-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Merriweather|Oswald|Poppins|Roboto+Slab" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div class="container-fluid" id="main">
+    <div class="row">
+      <div class="col-12">
+        <div class="top-shelf"></div>
+        <div class="row bk-blk no-gutters">
+          <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12">
+            <a class="logo" href="#">House Bulletin</a>
+          </div>
+          <div class="col-xl-9 col-lg-9 col-md-8 col-sm-12">
+            <ul class="nav nav-tabs justify-content-end">
+              <li class="nav-item"><a class="nav-link" href="./feed.html">Feed</a></li>
+              <li class="nav-item"><a class="nav-link active" href="./upload_pic.html">Upload Photo</a></li>
+              <li class="nav-item"><a class="nav-link" href="./todos-2.html">Create Todo List</a></li>
+              <li class="nav-item"><a class="nav-link" href="./todo-feed.html">My Todos</a></li>
+              <li class="nav-item"><a class="nav-link" href="./log-out.html">Log Out</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6" style="padding-top: 30px">
+        <div class="card framed" style="padding: 20px">
+<!-- focus on this  -->
+          <form id="image-form" action="#">
+            <div class="form-group">
+              <label>Picture Title</label>
+              <input type="text" class="form-control" id="post_title" placeholder="Image Title">
+            </div>
+            <div class="form-group">
+              <label>Description</label>
+              <input type="text-area" class="form-control" id="post_description" placeholder="description">
+            </div>
+            <div class="input-group">
+              <label class="input-group-btn">
+                <span class="btn btn-primary">Browse&hellip; <input id="mediaCapture" type="file"   accept="image/*,capture=camera" style="display: none;"></span>
+              </label>
+              <input type="text" class="form-control" style="height: 39px; margin-top: 0" readonly>
+            </div>
+            <button id="submitImage" title="Add an image" class="btn btn-primary" style="float:right; margin-top: 20px">Submit</button>
+          </form>
+<!-- ^^^^^^^^ focus on this ^^^^^^^^   -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+</body>
+</html>
