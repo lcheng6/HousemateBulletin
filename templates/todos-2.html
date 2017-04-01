@@ -21,10 +21,11 @@
           </div>
           <div class="col-xl-9 col-lg-9 col-md-8 col-sm-12">
             <ul class="nav nav-tabs justify-content-end">
-              <li class="nav-item"><a class="nav-link" href="#">Log Out</a></li>
-              <li class="nav-item"><a class="nav-link active" href="#">Feed</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
-              <li class="nav-item"><a class="nav-link disabled" href="#">Link</a></li>
+              <li class="nav-item"><a class="nav-link" href="./feed.html">Feed</a></li>
+              <li class="nav-item"><a class="nav-link" href="./upload_pic.html">Upload Photo</a></li>
+              <li class="nav-item"><a class="nav-link active" href="./todos-2.html">Create Todo List</a></li>
+              <li class="nav-item"><a class="nav-link" href="./todo-feed.html">My Todos</a></li>
+              <li class="nav-item"><a class="nav-link" href="./log-out.html">Log Out</a></li>
             </ul>
           </div>
         </div>
@@ -37,9 +38,16 @@
           <form id="todo-form" action="#">
             <div class="form-group todoItemHeader">
               <label>Todo List Title</label>
-              <input type="text" class="form-control" id="todo_title" placeholder="Todo Title">
+
+              <div id="input_container">
+                  <input type="text" class="form-control" id="todo_title" placeholder="Todo Title">
+                  <div class="chip" style="position: absolute top" id="input_chip" >
+                    <a href="delete#" style="color: white">x </a><small>Liang</small>
+                  </div>
+              </div>
+
               <small id="helper" class="form-text text-muted">Enter a title for this list</small>
-            </div>
+              </div>
           </form>
 
           <!-- <div class="form-group row">
