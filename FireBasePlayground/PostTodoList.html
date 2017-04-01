@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Nothing but posts</title>
+</head>
+<body>
+	<form id="todo-form" action="#">
+	  <div class="todoItemHeader">
+	      <label>Todo List Title</label>
+	      <input type="text" id="todo_title">
+	      <label>Todo Source</label>
+	      <input type="text" id="todo_source">
+	  </div>
+      <div class="todoItemEntry">
+	      <label>Item1</label>
+	      <input type="checkbox">
+	      <input type="text" id="item1" placeholder="Todo">
+	      <input type="text" id="item1Assignee" placeholder="Assignee">
+      </div>
+      <div class="todoItemEntry">
+	      <label>Item2</label>
+	      <input type="checkbox">
+	      <input type="text" id="item2" placeholder="Todo">
+	      <input type="text" id="item2Assignee" placeholder="Assignee">
+      </div>
+      <div class="todoItemEntry">
+	      <label>Item3</label>
+	      <input type="checkbox">
+	      <input type="text" id="item3" placeholder="Todo">
+	      <input type="text" id="item3Assignee" placeholder="Assignee">
+      </div>
+      <div class="todoItemEntry">
+	      <label>Item4</label>
+	      <input type="checkbox">
+	      <input type="text" id="item4" placeholder="Todo">
+	      <input type="text" id="item4Assignee" placeholder="Assignee">
+      </div>
+      <div class="todoListSubmit">
+      	<button id="submitTodo">Submit Todo</button>
+      </div>
+    </form>
+    <div id="TodoLists">
+    </div>
+
+<script src="./jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
+<script>
+ // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDibHtRsisWAscAOlnMHEED--nNYn-o_3A",
+    authDomain: "housematebulletin.firebaseapp.com",
+    databaseURL: "https://housematebulletin.firebaseio.com",
+    storageBucket: "housematebulletin.appspot.com",
+    messagingSenderId: "112460771425"
+  };
+  firebase.initializeApp(config);
+</script>
+<script src="./Todo.js"></script>
+</body>
+</html>
