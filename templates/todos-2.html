@@ -28,34 +28,49 @@
             </ul>
           </div>
         </div>
-        <div class="row justify-content-center">
-          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
-            <main class="align-middle">
-              <section id="task-form">
-                <input id="create-task" type="text" name="task-insert" placeholder="Insert your list items here">
-                <button id="create-task">Create List</button>
-              </section>
-              <section id="task-container">
-                <ul id="task-list">
-                  <h3 class="nothing-message">No list yet</h3>
-                  <h3 class="task-headline">Today's Tasks</h3>
-                </ul>
-                <div id="controls">
-                  <p>**Single Click to mark complete</p>
-                  <p>**Double Click to remove from list</p>
-                  <br />
-                  <button id="clear-all-tasks">Clear All Tasks</button>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6" style="padding-top: 30px">
+        <div class="card framed" style="padding: 20px">
+
+          <form id="todo-form" action="#">
+            <div class="form-group todoItemHeader">
+              <label>Todo List Title</label>
+              <input type="text" class="form-control" id="todo_title" placeholder="Todo Title">
+              <small id="helper" class="form-text text-muted">Enter a title for this list</small>
+            </div>
+          </form>
+
+          <!-- <div class="form-group row">
+            <label for="todo_source" class="col-2 col-form-label">Creator</label>
+            <div class="col-10">
+              <input class="form-control" type="text" value="" id="todo_source">
+            </div>
+          </div> -->
+
+          <div class="card" style="padding: 10px">
+            <form>
+              <div class="todoItemEntry form-group">
+                <div class="input-group">
+                  <span class="input-group-addon">
+                    <input type="checkbox" aria-label="done">
+                  </span>
+                  <input type="text" class="form-control" aria-label="todo" id="item1" placeholder="Todo">
                 </div>
-              </section>
-            </main>
+              </div>
+              <!-- <button type="" class="btn btn-primary" id="item1Assignee">Assign to self</button> -->
+            </form>
+            <button type="button" class="btn btn-primary btn-md btn-block">ADD TODO</button>
           </div>
+
+
         </div>
+
       </div>
     </div>
   </div>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
-  <script src="../assets/js/app.js"></script>
+
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 </body>
 </html>
