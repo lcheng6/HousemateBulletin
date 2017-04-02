@@ -1,15 +1,13 @@
 'use strict'
 
 function HousemateBoard() {
-  this.houseboardFeed = $('#houseboard-feed');
-
   this.initFirebase();
 }
 
 
-
 HousemateBoard.TODOLIST_TEMPLATE ="";
 HousemateBoard.TODOITEM_TEMPLATE ="";
+HousemateBoard.HOUSEMATE_FEED_SELECTOR = "#housemate-feed";
 
 HousemateBoard.prototype.initFirebase = function() {
 	// (DEVELOPER): Initialize Firebase.
@@ -87,7 +85,8 @@ HousemateBoard.POST_TEMPLATE =
     '<img class="card-img-top img-fluid" alt="Image cap">' + 
     '<div class="card-footer">' + 
       '<small class="text-muted"></small>' + 
-      '<br><small class="text-muted">Techshop - Mobile, AL</small>' + 
+      '<br>' + 
+      ' <small class="text-muted"></small>' + 
     '</div>' + 
     '<div class="card-block">' + 
       '<p class="card-text">Card Description</p>' + 
@@ -109,7 +108,7 @@ HousemateBoard.prototype.displayPost = function(key, title, description, source,
     newPost = $(HousemateBoard.POST_TEMPLATE);
 
     //TODO: modify the position of the new post. 
-    $('#messages').prepend(newPost);
+    $(HousemateBoard.HOUSEMATE_FEED_SELECTOR ).prepend(newPost);
   }
 
   newPost.attr('id', key);
@@ -117,7 +116,7 @@ HousemateBoard.prototype.displayPost = function(key, title, description, source,
   img = newPost.children().eq(1);
     //set time string
     newPost.children().eq(2).children().eq(0).text(createdtime);
-    newPost.children().eq(2).children().eq(1).text(source);
+    newPost.children().eq(2).children().eq(2).text(source);
   newPost.children().eq(3).children().eq(0).text(description);
 
   this.setImageUrl(imageUri, img);
@@ -152,9 +151,11 @@ HousemateBoard.prototype.setImageUrl = function(imageUri, img) {
 //   }
 // };
 
+
+
 HousemateBoard.LOADING_IMAGE_URL = 'https://www.google.com/images/spin-32.gif';
 
 window.onload = function() {
 	window.houseBoard = new HousemateBoard();
-	window.houseBoard.loadMessages();
+	window.houseBoard.loadImagePost();
 }
