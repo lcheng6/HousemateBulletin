@@ -9,6 +9,7 @@ HousemateBoard.TODOLIST_TEMPLATE ="";
 HousemateBoard.TODOITEM_TEMPLATE ="";
 HousemateBoard.HOUSEMATE_FEED_SELECTOR = "#housemate-feed";
 HousemateBoard.DATE_TIME_FORMAT = 'm/d/Y h:i a';
+HousemateBoard.LOADING_IMAGE_URL = 'https://www.google.com/images/spin-32.gif';
 
 HousemateBoard.prototype.initFirebase = function() {
 	// (DEVELOPER): Initialize Firebase.
@@ -55,16 +56,14 @@ HousemateBoard.prototype.saveImageMessage = function(event) {
   var textSource = this.postSource.value;
 
 
-
 	// Check if the file is an image.
 	if (!file.type.match('image.*')) {
+    console.log('not an image')
 		return;
 	}
-	// Check if the user is signed-in
 
-	// (DEVELOPER): Upload image to Firebase storage and add message.
-	// We add a message with a loading icon that will get updated with the shared image.
 
+  //put the posts metadata into the posts table. 
 	this.postsRef.push({
 	  source: textSource,
     title: textTitle,
@@ -146,27 +145,7 @@ HousemateBoard.prototype.setImageUrl = function(imageUri, img) {
     img.attr('src', imageUri)
   }
 }
-// // Sets the URL of the given img element with the URL of the image stored in Cloud Storage.
-// HousemateBoard.prototype.setImageUrl = function(imageUri, imgElement) {
-//   imgElement.src = imageUri;
-
-//   // (DEVELOPER): If image is on Cloud Storage, fetch image URL and set img element's src.
-
-//   if (imageUri.startsWith('gs://')) {
-//     imgElement.src = FriendlyChat.LOADING_IMAGE_URL; // Display a loading image first.
-//     this.storage.refFromURL(imageUri).getMetadata().then(function(metadata) {
-//       imgElement.src = metadata.downloadURLs[0];
-//     });
-//   } else {
-//     imgElement.src = imageUri;
-//   }
-// };
 
 
 
-HousemateBoard.LOADING_IMAGE_URL = 'https://www.google.com/images/spin-32.gif';
 
-window.onload = function() {
-	window.houseBoard = new HousemateBoard();
-	window.houseBoard.loadImagePost();
-}
