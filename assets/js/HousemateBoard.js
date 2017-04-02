@@ -8,6 +8,7 @@ function HousemateBoard() {
 HousemateBoard.TODOLIST_TEMPLATE ="";
 HousemateBoard.TODOITEM_TEMPLATE ="";
 HousemateBoard.HOUSEMATE_FEED_SELECTOR = "#housemate-feed";
+HousemateBoard.DATE_TIME_FORMAT = 'm/d/Y h:i a';
 
 HousemateBoard.prototype.initFirebase = function() {
 	// (DEVELOPER): Initialize Firebase.
@@ -115,7 +116,9 @@ HousemateBoard.prototype.displayPost = function(key, title, description, source,
   newPost.children().eq(0).text(title);
   img = newPost.children().eq(1);
     //set time string
-    newPost.children().eq(2).children().eq(0).text(createdtime);
+    
+    var myDate = new Date(createdtime);
+    newPost.children().eq(2).children().eq(0).text(myDate.format(HousemateBoard.DATE_TIME_FORMAT));
     newPost.children().eq(2).children().eq(2).text(source);
   newPost.children().eq(3).children().eq(0).text(description);
 
