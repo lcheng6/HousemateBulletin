@@ -12,6 +12,14 @@ HousemateBoard.DATE_TIME_FORMAT = 'm/d/Y h:i a';
 
 HousemateBoard.prototype.initFirebase = function() {
 	// (DEVELOPER): Initialize Firebase.
+    var config = {
+    apiKey: "AIzaSyDibHtRsisWAscAOlnMHEED--nNYn-o_3A",
+    authDomain: "housematebulletin.firebaseapp.com",
+    databaseURL: "https://housematebulletin.firebaseio.com",
+    storageBucket: "housematebulletin.appspot.com",
+    messagingSenderId: "112460771425"
+  };
+  firebase.initializeApp(config);
   this.auth = firebase.auth();
   this.database = firebase.database();
   this.storage = firebase.storage();
