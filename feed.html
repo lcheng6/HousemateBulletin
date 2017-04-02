@@ -41,7 +41,7 @@
               </div>
             </div>
             <div class="col-xl-6 col-lg-6 col-md-7 col-sm-8">
-              <div class="card">
+              <div class="card" id="houseboard-feed">
                 <div class="card framed">
                   <div class="card-header">
                     Makers on the march
@@ -79,6 +79,21 @@
     </div>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
+    <!-- TODO: make the code part of HousemateBoard.js -->
+    <script>
+     // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyDibHtRsisWAscAOlnMHEED--nNYn-o_3A",
+        authDomain: "housematebulletin.firebaseapp.com",
+        databaseURL: "https://housematebulletin.firebaseio.com",
+        storageBucket: "housematebulletin.appspot.com",
+        messagingSenderId: "112460771425"
+      };
+      firebase.initializeApp(config);
+    </script>
+    <script src="./assets/js/HousemateBoard.js"></script>
   </body>
 </html>
