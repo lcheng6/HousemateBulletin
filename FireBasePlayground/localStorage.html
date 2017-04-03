@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>localStorage</title>
+
+</script>
+</head>
+<body>
+<span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;"><section>
+</span><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">  <form id="form" action="#" method="POST">
+</span><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">  <input id="description" name="description" type="text" />
+</span><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">  <input id="add" type="submit" value="Add" />
+</span><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">  <button id="clear">Clear All</button>
+</span><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">  </form>
+</span><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">  <div id="alert"></div>
+</span><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;">  <ul id="todos"></ul>
+</span><span style="font-family: Consolas, Monaco, monospace; font-size: 12px; line-height: 18px;"></section></span>
+
+<script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script type="text/javascript">
+	$('#add').click( function() {
+   var Description = $('#description').val();
+  if($("#description").val() == '') {
+    $('#alert').html("<strong>Warning!</strong> You left the to-do empty");
+    $('#alert').fadeIn().delay(1000).fadeOut();
+    return false;
+   }
+   $('#todos').prepend("<li><input id='check' name='check' type='checkbox'/>" + Description + "</li>");
+   $('#form')[0].reset();
+   debugger;
+   var todos = $('#todos').html();
+   localStorage.setItem('todos', todos);
+   return false;
+});
+
+if(localStorage.getItem('todos')) {
+$('#todos').html(localStorage.getItem('todos'));
+}
+
+$('#clear').click( function() {
+window.localStorage.clear();
+location.reload();
+return false;
+});
+</script>
+</body>
+</html>
