@@ -95,8 +95,6 @@ HousemateBoard.prototype.saveImageMessage = function(event) {
 	// 	return;
 	// }
 
-
-  debugger;
   //put the posts metadata into the posts table. 
 	this.postsRef.push({
 	  source: textSource,
@@ -143,17 +141,18 @@ HousemateBoard.prototype.displayPost = function(key, title, description, source,
 
   if (newPost.length >= 1) {
     //the Post element already exists, just modify the content.
-    newPost.empty();
+    
   }else {
     //create new post;
     
     newPost = $(HousemateBoard.POST_TEMPLATE);
+    newPost.attr('id', key);
 
     //TODO: modify the position of the new post. 
     $(HousemateBoard.HOUSEMATE_FEED_SELECTOR ).prepend(newPost);
   }
 
-  newPost.attr('id', key);
+
   newPost.children().eq(0).text(title);
   img = newPost.children().eq(1);
     //set time string
