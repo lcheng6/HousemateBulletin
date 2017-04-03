@@ -385,3 +385,9 @@ img {
     bottom:8px;
     right:10px;
 }
+
+#image-preview-box {
+  max-height: 100%;
+  max-width:100%;
+  margin:auto;
+}

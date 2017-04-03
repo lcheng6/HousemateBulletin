@@ -29,6 +29,10 @@ HousemateBoard.prototype.initFirebase = function() {
   this.todolistsRef = this.database.ref('todolists');
 };
 
+HousemateBoard.prototype.setupForImagePost = function() {
+  $('#post_image_selector').change(window.houseBoard.previewImage.bind(this));
+  $('#post_submit').click(window.houseBoard.saveImageMessage.bind(this))
+}
 //load image posts
 HousemateBoard.prototype.loadImagePost = function() {
   // (DEVELOPER): Load and listens for new messages.
@@ -39,7 +43,7 @@ HousemateBoard.prototype.loadImagePost = function() {
   // Loads the last 12 messages and listen for new ones.
   var setPost = function(data) {
     var val = data.val();
-    console.log(val);
+    //console.log(val);
     this.displayPost(data.key, val.title, val.description, val.source, val.createdtime, val.imageUri);
   }.bind(this);
 
@@ -47,22 +51,52 @@ HousemateBoard.prototype.loadImagePost = function() {
   this.postsRef.limitToLast(12).on('child_changed', setPost);
 };
 
-//load image
-HousemateBoard.prototype.saveImageMessage = function(event) {
+//preview image in an <img> before we save it onto Firebase server
+HousemateBoard.prototype.previewImage = function(event) {
   event.preventDefault();
-  var file = event.target.files[0];
-  var textTitle = this.postTitle.value;
-  var textDescription = this.postDescription.value;
-  var textSource = this.postSource.value;
+
+  var tgt = event.target,
+        files = tgt.files;
+
+  //load this file into the display
+  if (FileReader && files && files.length) {
+    var fr = new FileReader();
+    fr.onload = function() {
+      $('#image-preview-box').attr('src', fr.result);
+      //console.log(fr.type.match('image.*'));
+      console.log(fr.type)
+    }
+    fr.readAsDataURL(files[0]);
+    this.postImageFile = files[0];
+
+  }
+  else {
+    debugger;
+  }
+}
+//kicked off by the submit button, this function will read the parent form.
+//get the value of title, description, and file value of the file input.  
+//then post it to the feed.  
+//TODO: need to integrate identity (from) into this function. 
+HousemateBoard.prototype.saveImageMessage = function(event) {
+
+  event.preventDefault();
+  var file = this.postImageFile;
+  var textTitle = $('#post_title').val();
+  var textDescription = $('#post_description').val();
+
+  //TODO: need the source of the person
+  var textSource = "";
 
 
 	// Check if the file is an image.
-	if (!file.type.match('image.*')) {
-    console.log('not an image')
-		return;
-	}
+	// if (!file.type.match('image.*')) {
+ //    console.log('not an image')
+	// 	return;
+	// }
 
 
+  debugger;
   //put the posts metadata into the posts table. 
 	this.postsRef.push({
 	  source: textSource,

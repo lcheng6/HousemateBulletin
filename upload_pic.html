@@ -43,13 +43,17 @@
               <label>Description</label>
               <input type="text-area" class="form-control" id="post_description" placeholder="description">
             </div>
-            <div class="input-group">
-              <label class="input-group-btn">
+<!--             <div class="input-group">
+              <label id="browse-image-btn" class="input-group-btn">
                 <span class="btn btn-primary">Browse&hellip; <input id="mediaCapture" type="file"   accept="image/*,capture=camera" style="display: none;"></span>
               </label>
               <input type="text" class="form-control" style="height: 39px; margin-top: 0" readonly>
+            </div> -->
+            <input id="post_image_selector" type="file" accept="image/*,capture=camera">
+            <div class="image-preview">
+              <img id="image-preview-box">
             </div>
-            <button id="submitImage" title="Add an image" class="btn btn-primary" style="float:right; margin-top: 20px">Submit</button>
+            <button id="post_submit" title="Add an image" class="btn btn-primary" style="float:right; margin-top: 20px">Submit</button>
           </form>
 <!-- ^^^^^^^^ focus on this ^^^^^^^^   -->
         </div>
@@ -59,13 +63,14 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-      <script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
-    <script type="text/javascript" src="./assets/js/date.format.js"></script>
-    <script src="./assets/js/HousemateBoard.js"></script>
-    <script>
+  <script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
+  <script type="text/javascript" src="./assets/js/date.format.js"></script>
+  <script src="./assets/js/HousemateBoard.js"></script>
+  <script>
     window.onload = function() {
       window.houseBoard = new HousemateBoard();
-      window.houseBoard.loadImagePost();
+      window.houseBoard.setupForImagePost();
     }
+  </script>
 </body>
 </html>
