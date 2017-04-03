@@ -97,7 +97,7 @@ HousemateBoard.prototype.saveImageMessage = function(event) {
 
   //put the posts metadata into the posts table. 
 	this.postsRef.push({
-	  source: this.getIdentity(),
+	  source: textSource,
     title: textTitle,
     description: textDescription,
 	  imageUri: HousemateBoard.LOADING_IMAGE_URL,
@@ -179,18 +179,6 @@ HousemateBoard.prototype.setImageUrl = function(imageUri, img) {
   }
 }
 
-HousemateBoard.prototype.setIdentity = function(username) {
-  localStorage.setItem('username', username)
-}
 
-HousemateBoard.prototype.getIdentity = function(username) {
-  var username = localStorage.getItem('username')
-  if (username) {
-    return username;
-  }else {
-    console.log('Sign in First');
-    return "";
-  }
-}
 
 
