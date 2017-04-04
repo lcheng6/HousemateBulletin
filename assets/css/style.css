@@ -367,8 +367,12 @@ img {
     /*line-height: 50px;*/
     border-radius: 20px;
     background-color: grey;
-    color: white;
+    color: green;
     font-family: Poppins;
+    position:absolute;
+    bottom:8px;
+    right:100px;
+    z-index:2;
 }
 
 #input_container {
@@ -380,11 +384,7 @@ img {
     margin:0;
     padding-left: 30px;
 }
-#input_chip {
-    position:absolute;
-    bottom:8px;
-    right:10px;
-}
+
 
 #image-preview-box {
   max-height: 100%;
