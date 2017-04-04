@@ -391,3 +391,10 @@ img {
   max-width:100%;
   margin:auto;
 }
+
+.create-todo-form {
+  padding:20px;
+}
+.display-todo-form {
+  padding:20px;
+}

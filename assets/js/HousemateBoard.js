@@ -244,6 +244,7 @@ HousemateBoard.prototype.submitTodoListBtnClick = function (event) {
       var todoitem = {};
       todoitem.completed = $(this).children().eq(0).children().eq(0).prop('checked');
       todoitem.description = $(this).children().eq(1).val();
+      todoitem.assignee = null;
       //console.log(todoitem);
       list.push(todoitem);
   })
@@ -280,3 +281,5 @@ HousemateBoard.prototype.setupForCreateTodoPage = function() {
 
 HousemateBoard.DISPLAY_TODOLIST_TEMPLATE ="";
 HousemateBoard.DISPLAY_TODOITEM_TEMPLATE ="";
+
+
