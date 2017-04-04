@@ -53,30 +53,26 @@
               </div>
             </div> -->
 
-            <div class="card" id="todo-entries" style="padding: 10px">
+            <div class="card" style="padding: 10px">
             
-              <div class="todoItemEntry form-group">
-                <div class="input-group">
-                  <span class="input-group-addon">
-                    <input type="checkbox" aria-label="done">
-                  </span>
-                  <input type="text" class="form-control" aria-label="todo" placeholder="Todo">
-                </div>
-              </div>
-              <div class="todoItemEntry form-group">
-                <div class="input-group">
-                  <span class="input-group-addon">
-                    <input type="checkbox" aria-label="done">
-                  </span>
-                  <input type="text" class="form-control" aria-label="todo" placeholder="Todo">
+              <div id="todo-entries">
+                <div class="todoItemEntry form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <input type="checkbox" aria-label="done">
+                    </span>
+                    <input type="text" class="form-control" aria-label="todo" placeholder="Todo">
+                  </div>
                 </div>
               </div>
               <!-- <button type="" class="btn btn-primary" id="item1Assignee">Assign to self</button> -->
            
-              <button type="button" class="btn btn-primary btn-md btn-block">ADD TODO</button>
-              <button type="button" class="btn btn-success btn-md btn-block">Submit</button>
-            </form>
-          </div>
+              <button type="button" id='add-new-item-btn' class="btn btn-primary btn-md btn-block">Add New Item</button>
+              
+            </div>
+            <button type="button" id='submit-todo-list-btn' class="btn btn-success btn-md btn-block">Submit</button>
+          </form>
+          
 
 
         </div>
@@ -91,5 +87,11 @@
 
   <script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
   <script src="./assets/js/HousemateBoard.js"></script>
+  <script>
+    window.onload = function() {
+      window.houseBoard = new HousemateBoard();
+      window.houseBoard.setupForCreateTodoPage();
+    }
+  </script>
 </body>
 </html>

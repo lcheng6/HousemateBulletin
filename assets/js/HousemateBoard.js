@@ -194,8 +194,8 @@ HousemateBoard.prototype.getIdentity = function(username) {
 
 HousemateBoard.TODO_TITLE_SELECTOR = "#todo-title"
 HousemateBoard.TODO_ENTRIES_SELECTOR = "#todo-entries"
-HousemateBoard.TODOLIST_TEMPLATE ="";
-HousemateBoard.DISPLAY_TODOITEM_TEMPLATE ="";
+HousemateBoard.ADD_NEW_ITEM_BTN_SELECTOR = '#add-new-item-btn'
+HousemateBoard.SUBMIT_TODO_LIST_BTN_SELECTOR ='#submit-todo-list-btn'
 HousemateBoard.CREATE_TODOITEM_TEMPLATE = 
   '<div class="todoItemEntry form-group">' + 
     '<div class="input-group">' + 
@@ -205,8 +205,36 @@ HousemateBoard.CREATE_TODOITEM_TEMPLATE =
       '<input type="text" class="form-control" aria-label="todo" placeholder="Todo">' + 
     '</div>' + 
   '</div>'; 
-HousemateBoard.prototype.addTodoItem = function () {
+
+//this function add a new todoitem in the createtodo.html, basically adding an additional entry
+//in a new todo list. 
+HousemateBoard.prototype.addNewTodoItemBtnClick = function (event) {
+
+  event.preventDefault();
+  console.log('add new todo item clicked')
+
+  var newTodoItem = $(HousemateBoard.CREATE_TODOITEM_TEMPLATE);
+
+  $(HousemateBoard.TODO_ENTRIES_SELECTOR).append(newTodoItem);
 
 }
 
+HousemateBoard.prototype.submitTodoListBtnClick = function (event) {
 
+  event.preventDefault();
+
+  console.log('submit todo list clicked')
+
+  //Read the list. 
+
+  var title = 
+
+}
+HousemateBoard.prototype.setupForCreateTodoPage = function() {
+  $(HousemateBoard.ADD_NEW_ITEM_BTN_SELECTOR).click(window.houseBoard.addNewTodoItemBtnClick.bind(this))
+  $(HousemateBoard.SUBMIT_TODO_LIST_BTN_SELECTOR).click(window.houseBoard.submitTodoListBtnClick.bind(this));
+}
+
+
+HousemateBoard.DISPLAY_TODOLIST_TEMPLATE ="";
+HousemateBoard.DISPLAY_TODOITEM_TEMPLATE ="";
