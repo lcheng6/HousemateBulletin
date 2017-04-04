@@ -39,36 +39,43 @@
               <label>Todo List Title</label>
 
               <div id="input_container">
-                  <input type="text" class="form-control" id="todo_title" placeholder="Todo Title">
-                  <div class="chip" style="position: absolute top" id="input_chip" >
-                    <a href="delete#" style="color: white">x </a><small>Liang</small>
-                  </div>
+                  <input type="text" class="form-control" id="todo-title" placeholder="Todo Title">
               </div>
 
               <small id="helper" class="form-text text-muted">Enter a title for this list</small>
               </div>
-          </form>
+          
 
-          <!-- <div class="form-group row">
-            <label for="todo_source" class="col-2 col-form-label">Creator</label>
-            <div class="col-10">
-              <input class="form-control" type="text" value="" id="todo_source">
-            </div>
-          </div> -->
+            <!-- <div class="form-group row">
+              <label for="todo_source" class="col-2 col-form-label">Creator</label>
+              <div class="col-10">
+                <input class="form-control" type="text" value="" id="todo_source">
+              </div>
+            </div> -->
 
-          <div class="card" style="padding: 10px">
-            <form>
+            <div class="card" id="todo-entries" style="padding: 10px">
+            
               <div class="todoItemEntry form-group">
                 <div class="input-group">
                   <span class="input-group-addon">
                     <input type="checkbox" aria-label="done">
                   </span>
-                  <input type="text" class="form-control" aria-label="todo" id="item1" placeholder="Todo">
+                  <input type="text" class="form-control" aria-label="todo" placeholder="Todo">
+                </div>
+              </div>
+              <div class="todoItemEntry form-group">
+                <div class="input-group">
+                  <span class="input-group-addon">
+                    <input type="checkbox" aria-label="done">
+                  </span>
+                  <input type="text" class="form-control" aria-label="todo" placeholder="Todo">
                 </div>
               </div>
               <!-- <button type="" class="btn btn-primary" id="item1Assignee">Assign to self</button> -->
+           
+              <button type="button" class="btn btn-primary btn-md btn-block">ADD TODO</button>
+              <button type="button" class="btn btn-success btn-md btn-block">Submit</button>
             </form>
-            <button type="button" class="btn btn-primary btn-md btn-block">ADD TODO</button>
           </div>
 
 
@@ -78,6 +85,11 @@
     </div>
   </div>
 
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
+  <script src="./assets/js/HousemateBoard.js"></script>
 </body>
 </html>

@@ -5,8 +5,7 @@ function HousemateBoard() {
 }
 
 
-HousemateBoard.TODOLIST_TEMPLATE ="";
-HousemateBoard.TODOITEM_TEMPLATE ="";
+
 HousemateBoard.HOUSEMATE_FEED_SELECTOR = "#housemate-feed";
 HousemateBoard.DATE_TIME_FORMAT = 'm/d/Y h:i a';
 HousemateBoard.LOADING_IMAGE_URL = 'https://www.google.com/images/spin-32.gif';
@@ -191,6 +190,23 @@ HousemateBoard.prototype.getIdentity = function(username) {
     console.log('Sign in First');
     return "";
   }
+}
+
+HousemateBoard.TODO_TITLE_SELECTOR = "#todo-title"
+HousemateBoard.TODO_ENTRIES_SELECTOR = "#todo-entries"
+HousemateBoard.TODOLIST_TEMPLATE ="";
+HousemateBoard.DISPLAY_TODOITEM_TEMPLATE ="";
+HousemateBoard.CREATE_TODOITEM_TEMPLATE = 
+  '<div class="todoItemEntry form-group">' + 
+    '<div class="input-group">' + 
+      '<span class="input-group-addon">' + 
+        '<input type="checkbox" aria-label="done">' + 
+      '</span>' + 
+      '<input type="text" class="form-control" aria-label="todo" placeholder="Todo">' + 
+    '</div>' + 
+  '</div>'; 
+HousemateBoard.prototype.addTodoItem = function () {
+
 }
 
 
