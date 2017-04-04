@@ -251,9 +251,15 @@ HousemateBoard.prototype.submitTodoListBtnClick = function (event) {
   todolist.title = title;
   todolist.source = source;
   todolist.list = list;
+  todolist.createdtime = firebase.database.ServerValue.TIMESTAMP
   console.log(todolist);
 
   //once I get the list, add it to the Firebase database. 
+  this.todolistsRef.push(todolist).then(function(data) {
+    //do nothing here
+  }.bind(this)).catch(function(error) {
+    console.error('There was an error uploading todolist');
+  })
 
 
   //clear the todo form, and set the todo list to just a single todo item
