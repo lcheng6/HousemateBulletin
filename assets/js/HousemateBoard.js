@@ -193,8 +193,10 @@ HousemateBoard.prototype.getIdentity = function(username) {
 }
 
 HousemateBoard.TODO_TITLE_SELECTOR = "#todo-title"
-HousemateBoard.TODO_ENTRIES_SELECTOR = "#todo-entries"
+HousemateBoard.CREATE_TODO_ENTRIES_SELECTOR = "#todo-entries"
 HousemateBoard.ADD_NEW_ITEM_BTN_SELECTOR = '#add-new-item-btn'
+HousemateBoard.CREATE_TODOITEM_FORM_SELECTR = '#todo-form'
+HousemateBoard.CREATE_TODO_LIST_CONTENT_SELECTOR = '#todo-entries .input-group'
 HousemateBoard.SUBMIT_TODO_LIST_BTN_SELECTOR ='#submit-todo-list-btn'
 HousemateBoard.CREATE_TODOITEM_TEMPLATE = 
   '<div class="todoItemEntry form-group">' + 
@@ -215,7 +217,7 @@ HousemateBoard.prototype.addNewTodoItemBtnClick = function (event) {
 
   var newTodoItem = $(HousemateBoard.CREATE_TODOITEM_TEMPLATE);
 
-  $(HousemateBoard.TODO_ENTRIES_SELECTOR).append(newTodoItem);
+  $(HousemateBoard.CREATE_TODO_ENTRIES_SELECTOR).append(newTodoItem);
 
 }
 
@@ -225,9 +227,43 @@ HousemateBoard.prototype.submitTodoListBtnClick = function (event) {
 
   console.log('submit todo list clicked')
 
-  //Read the list. 
+  //data model of a todo list: 
+  //  createdtime
+  //  title
+  //  list [ {assignee: <text>, completed: <T/F>, description: <text>, priority: 2}]
+  //  
+  //Read the list from the createtodo.html 
 
-  var title = 
+  var title = $(HousemateBoard.TODO_TITLE_SELECTOR).val(); 
+  var source = this.getIdentity();
+  var list = [];
+  var todolist = {}
+
+
+  $(HousemateBoard.CREATE_TODO_LIST_CONTENT_SELECTOR).each(function(index) {
+      var todoitem = {};
+      todoitem.completed = $(this).children().eq(0).children().eq(0).prop('checked');
+      todoitem.description = $(this).children().eq(1).val();
+      //console.log(todoitem);
+      list.push(todoitem);
+  })
+
+  todolist.title = title;
+  todolist.source = source;
+  todolist.list = list;
+  console.log(todolist);
+
+  //once I get the list, add it to the Firebase database. 
+
+
+  //clear the todo form, and set the todo list to just a single todo item
+  $(HousemateBoard.CREATE_TODOITEM_FORM_SELECTR).trigger('reset');
+  $(HousemateBoard.CREATE_TODO_ENTRIES_SELECTOR).empty();
+
+  var newTodoItem = $(HousemateBoard.CREATE_TODOITEM_TEMPLATE);
+
+  $(HousemateBoard.CREATE_TODO_ENTRIES_SELECTOR).append(newTodoItem);
+
 
 }
 HousemateBoard.prototype.setupForCreateTodoPage = function() {
