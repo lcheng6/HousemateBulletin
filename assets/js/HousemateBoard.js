@@ -316,9 +316,11 @@ HousemateBoard.prototype.todoItemCompletedCheckBoxClick = function(event) {
 //assignee
 HousemateBoard.prototype.readTodoItemEntryFromHtml = function(todoItemEntryHtml) {
   var result = {};
-  debugger;
   result.completed = todoItemEntryHtml.children().eq(0).children().eq(0).children().eq(0).prop('checked');
   result.description =  todoItemEntryHtml.children().eq(0).children().eq(1).val();
+  if (todoItemEntryHtml.children().eq(0).children().eq(2).has("span").length) {
+    result.assignee = todoItemEntryHtml.children().eq(0).children().eq(2).children().eq(0).text();
+  }
 
   debugger;
   //result.assignee
