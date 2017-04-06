@@ -149,7 +149,7 @@ HousemateBoard.prototype.displayPost = function(key, title, description, source,
     newPost.attr('createdtime', createdtime.toString())
 
     //TODO: modify the position of the new post. 
-    $(HousemateBoard.HOUSEMATE_FEED_SELECTOR ).prepend(newPost);
+    $(HousemateBoard.HOUSEMATE_FEED_SELECTOR).prepend(newPost);
   }
 
 
@@ -310,9 +310,14 @@ HousemateBoard.DISPLAY_TODOLIST_TEMPLATE =
     '<div class="card-header"></div>' + 
     '<form class="display-todo-form" action="#">' + 
       '<div class="form-group todoItemHeader">' +            
-        '<div id="todo-entries"></div>' + 
+        '<div class="todo-entries"></div>' + 
       '</div>' + 
     '</form>' + 
+    '<div class="card-footer">' + 
+      '<small class="text-muted"></small>' + 
+      '<br>' + 
+      '<small class="text-muted"></small>' +
+    '</div>' + 
   '</div>';
 
 HousemateBoard.DISPLAY_TODOITEM_TEMPLATE = 
@@ -321,16 +326,43 @@ HousemateBoard.DISPLAY_TODOITEM_TEMPLATE =
       '<span class="input-group-addon">' + 
         '<input type="checkbox" aria-label="done">' + 
       '</span>' + 
-      '<input disabled="disabled" type="text" class="form-control" aria-label="todo" value="Item 1">'
+      '<input disabled="disabled" type="text" class="form-control" aria-label="todo" value="">' + 
       '<button class="btn btn-primary">I\'ll do it</button>' + 
     '</div>' + 
   '</div>';
 
 HousemateBoard.DISPLAY_TODOITEM_ASSIGNEE_TEMPLATE = 
   '<div class="chip" style="position: absolute top">' + 
-    '<span>Liang</span>' + 
+    '<span></span>' + 
   '</div>';
 
+HousemateBoard.prototype.displayTodoList = function(key, title, source, todoItemsArray, createdtime) {
+  var newTodoList = $('#'+ key);
+
+  if (newTodoList.length >=1) {
+    //the todo list element already exists, just modiffy the contnet.
+  }else {
+    //create new Todo List
+    newTodoList = $(HousemateBoard.DISPLAY_TODOLIST_TEMPLATE);
+    newTodoList.attr('id', key);
+    newTodoList.attr('createdtime', createdtime.toString());
+
+    //TODO: modify the postion of the new Todo List
+
+    $(HousemateBoard.HOUSEMATE_FEED_SELECTOR).prepend(newTodoList);
+  }
+  newTodoList.children().eq(0).text(title);
+
+  todoItemsArray.forEach(function(todoItem) {
+    var newItemItemHtml = $(HousemateBoard.DISPLAY_TODOITEM_TEMPLATE);
+    newItemItemHtml.children().eq(0).children().eq(1).val(todoItem.description)
+    newTodoList.find('.todo-entries').append(newItemItemHtml);
+  })
+  var myDate = new Date(createdtime);
+  newTodoList.children().eq(2).children().eq(0).text(myDate.format(HousemateBoard.DATE_TIME_FORMAT));
+  newTodoList.children().eq(2).children().eq(2).text(source);
+
+}
 HousemateBoard.prototype.todoItemCompletedCheckBoxClick = function(event) {
   event.preventDefault();
   var eventTarget = $(event.target);
@@ -351,12 +383,13 @@ HousemateBoard.prototype.readTodoItemEntryFromHtml = function(todoItemEntryHtml)
   //result.assignee
 }
 
-HousemateBoard.prototype.loadTodoLists = function() {
-  $('div.todoItemEntry > div.input-group > span > input[type="checkbox"]').click(this.todoItemCompletedCheckBoxClick.bind(this))
+// HousemateBoard.prototype.loadTodoLists = function() {
+//   // $('div.todoItemEntry > div.input-group > span > input[type="checkbox"]').click(this.todoItemCompletedCheckBoxClick.bind(this))
 
-  $('div.todoItemEntry > div.input-group > button').click(this.todoItemAssignToSelfBtnClick.bind(this))
+//   // $('div.todoItemEntry > div.input-group > button').click(this.todoItemAssignToSelfBtnClick.bind(this))
 
-}
+
+// }
 
 
 
