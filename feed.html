@@ -30,11 +30,11 @@
           </div>
           <div class="row no-gutters">
             <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4">
-              <div class="list-group">
-                <div class="list-group-item city" id="data-header">Local Data</div>
+              <div class="list-group" id="weather-list-group">
+                <div class="list-group-item" id="data-header">Local Data</div>
                 <div class="list-group-item city">city</div>
                 <div class="list-group-item wind">wind</div>
-                <div class="list-group-item humidity">humidy</div>
+                <div class="list-group-item humidity">humidity</div>
                 <div class="list-group-item temp">temp</div>
                 <div class="list-group-item description">description</div>
                 <div class="list-group-item" id="weatherIcon">weather icon</div>
@@ -125,11 +125,15 @@
     <script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
     <script type="text/javascript" src="./assets/js/date.format.js"></script>
     <script src="./assets/js/HousemateBoard.js"></script>
+    <script src="./assets/js/WeatherData.js"></script>
     <script>
     window.onload = function() {
       window.houseBoard = new HousemateBoard();
       window.houseBoard.loadImagePosts();
       window.houseBoard.loadTodoLists();
+
+      window.weatherData = new WeatherData();
+      window.weatherData.getWeatherData();
     }
     </script>
   </body>
