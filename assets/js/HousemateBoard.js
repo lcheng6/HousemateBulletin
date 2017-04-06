@@ -305,6 +305,32 @@ HousemateBoard.prototype.todoItemAssignToSelfBtnClick = function(event) {
   debugger;
 }
 
+HousemateBoard.DISPLAY_TODOLIST_TEMPLATE =
+  '<div class="card framed">'+
+    '<div class="card-header"></div>' + 
+    '<form class="display-todo-form" action="#">' + 
+      '<div class="form-group todoItemHeader">' +            
+        '<div id="todo-entries"></div>' + 
+      '</div>' + 
+    '</form>' + 
+  '</div>';
+
+HousemateBoard.DISPLAY_TODOITEM_TEMPLATE = 
+  '<div class="todoItemEntry form-group">' + 
+    '<div class="input-group" index="0">' +
+      '<span class="input-group-addon">' + 
+        '<input type="checkbox" aria-label="done">' + 
+      '</span>' + 
+      '<input disabled="disabled" type="text" class="form-control" aria-label="todo" value="Item 1">'
+      '<button class="btn btn-primary">I\'ll do it</button>' + 
+    '</div>' + 
+  '</div>';
+
+HousemateBoard.DISPLAY_TODOITEM_ASSIGNEE_TEMPLATE = 
+  '<div class="chip" style="position: absolute top">' + 
+    '<span>Liang</span>' + 
+  '</div>';
+
 HousemateBoard.prototype.todoItemCompletedCheckBoxClick = function(event) {
   event.preventDefault();
   var eventTarget = $(event.target);
@@ -321,10 +347,9 @@ HousemateBoard.prototype.readTodoItemEntryFromHtml = function(todoItemEntryHtml)
   if (todoItemEntryHtml.children().eq(0).children().eq(2).has("span").length) {
     result.assignee = todoItemEntryHtml.children().eq(0).children().eq(2).children().eq(0).text();
   }
-
-  debugger;
+  return result;
   //result.assignee
-} 
+}
 
 HousemateBoard.prototype.loadTodoLists = function() {
   $('div.todoItemEntry > div.input-group > span > input[type="checkbox"]').click(this.todoItemCompletedCheckBoxClick.bind(this))
@@ -332,7 +357,7 @@ HousemateBoard.prototype.loadTodoLists = function() {
   $('div.todoItemEntry > div.input-group > button').click(this.todoItemAssignToSelfBtnClick.bind(this))
 
 }
-HousemateBoard.DISPLAY_TODOLIST_TEMPLATE ="";
-HousemateBoard.DISPLAY_TODOITEM_TEMPLATE ="";
+
+
 
 
