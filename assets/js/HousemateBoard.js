@@ -34,7 +34,6 @@ HousemateBoard.prototype.setupForImagePost = function() {
 }
 //load image posts
 HousemateBoard.prototype.loadImagePost = function() {
-  // (DEVELOPER): Load and listens for new messages.
 
   // Make sure we remove all previous listeners.
   this.postsRef.off();
@@ -49,6 +48,7 @@ HousemateBoard.prototype.loadImagePost = function() {
   this.postsRef.limitToLast(12).on('child_added', setPost);
   this.postsRef.limitToLast(12).on('child_changed', setPost);
 };
+
 
 //preview image in an <img> before we save it onto Firebase server
 HousemateBoard.prototype.previewImage = function(event) {
@@ -146,6 +146,7 @@ HousemateBoard.prototype.displayPost = function(key, title, description, source,
     
     newPost = $(HousemateBoard.POST_TEMPLATE);
     newPost.attr('id', key);
+    newPost.attr('createdtime', createdtime.toString())
 
     //TODO: modify the position of the new post. 
     $(HousemateBoard.HOUSEMATE_FEED_SELECTOR ).prepend(newPost);
@@ -276,6 +277,21 @@ HousemateBoard.prototype.submitTodoListBtnClick = function (event) {
 HousemateBoard.prototype.setupForCreateTodoPage = function() {
   $(HousemateBoard.ADD_NEW_ITEM_BTN_SELECTOR).click(window.houseBoard.addNewTodoItemBtnClick.bind(this))
   $(HousemateBoard.SUBMIT_TODO_LIST_BTN_SELECTOR).click(window.houseBoard.submitTodoListBtnClick.bind(this));
+}
+
+
+//This function is to be consumed by the feed page to prepare to load todolists. 
+
+HousemateBoard.prototype.loadTodoLists = function() {
+  this.todolistsRef.off();
+
+  var setTodoList = function(data) {
+    var val = data.val();
+    this.displayTodoList(data.key, val.title, val.source, val.list, val.createdtime);
+  }.bind(this);
+
+  this.todolistsRef.limitToLast(12).on('child_added', setTodoList);
+  this.todolistsRef.limitToLast(12).on('child_changed', setTodoList)
 }
 
 
