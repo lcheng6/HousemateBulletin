@@ -33,7 +33,7 @@ HousemateBoard.prototype.setupForImagePost = function() {
   $('#post_submit').click(window.houseBoard.saveImageMessage.bind(this))
 }
 //load image posts
-HousemateBoard.prototype.loadImagePost = function() {
+HousemateBoard.prototype.loadImagePosts = function() {
 
   // Make sure we remove all previous listeners.
   this.postsRef.off();
@@ -274,13 +274,15 @@ HousemateBoard.prototype.submitTodoListBtnClick = function (event) {
 
 
 }
+
+//This function is consumed by createtodo.html to help create todo lists
 HousemateBoard.prototype.setupForCreateTodoPage = function() {
   $(HousemateBoard.ADD_NEW_ITEM_BTN_SELECTOR).click(window.houseBoard.addNewTodoItemBtnClick.bind(this))
   $(HousemateBoard.SUBMIT_TODO_LIST_BTN_SELECTOR).click(window.houseBoard.submitTodoListBtnClick.bind(this));
 }
 
 
-//This function is to be consumed by the feed page to prepare to load todolists. 
+//This function is consumed by the feed page to prepare to load todolists. 
 
 HousemateBoard.prototype.loadTodoLists = function() {
   this.todolistsRef.off();
@@ -294,7 +296,40 @@ HousemateBoard.prototype.loadTodoLists = function() {
   this.todolistsRef.limitToLast(12).on('child_changed', setTodoList)
 }
 
+HousemateBoard.prototype.todoItemAssignToSelfBtnClick = function(event) {
+  event.preventDefault();
 
+  var eventTarget = event.target;
+  var todoItemIndex = eventTarget.parent.attr('index').parseInt();
+  console.target('Index: ' + index)
+  debugger;
+}
+
+HousemateBoard.prototype.todoItemCompletedCheckBoxClick = function(event) {
+  event.preventDefault();
+  var eventTarget = $(event.target);
+  var todoItemEntryAncestor = eventTarget.parent().parent().parent();
+  this.readTodoItemEntryFromHtml(todoItemEntryAncestor);
+}
+
+//get input of a jQuery object, read the object for completed status, todo item name, 
+//assignee
+HousemateBoard.prototype.readTodoItemEntryFromHtml = function(todoItemEntryHtml) {
+  var result = {};
+  debugger;
+  result.completed = todoItemEntryHtml.children().eq(0).children().eq(0).children().eq(0).prop('checked');
+  result.description =  todoItemEntryHtml.children().eq(0).children().eq(1).val();
+
+  debugger;
+  //result.assignee
+} 
+
+HousemateBoard.prototype.loadTodoLists = function() {
+  $('div.todoItemEntry > div.input-group > span > input[type="checkbox"]').click(this.todoItemCompletedCheckBoxClick.bind(this))
+
+  $('div.todoItemEntry > div.input-group > button').click(this.todoItemAssignToSelfBtnClick.bind(this))
+
+}
 HousemateBoard.DISPLAY_TODOLIST_TEMPLATE ="";
 HousemateBoard.DISPLAY_TODOITEM_TEMPLATE ="";
 
