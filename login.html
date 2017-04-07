@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Merriweather|Oswald|Poppins|Roboto+Slab" rel="stylesheet">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
   </head>
 
   <body>
@@ -21,10 +21,9 @@
             </div>
             <div class="col-xl-9 col-lg-9 col-md-6 col-sm-12">
               <ul class="nav nav-tabs justify-content-end">
-                <li class="nav-item"><a class="nav-link active" href="#">Log In</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Feed</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
-                <li class="nav-item"><a class="nav-link disabled" href="#">Link</a></li>
+                <li class="nav-item"><a class="nav-link" href="./feed.html">Feed</a></li>
+                <li class="nav-item"><a class="nav-link" href="./upload_pic.html">Upload Photo</a></li>
+                <li class="nav-item"><a class="nav-link" href="./createtodos.html">Create Todo List</a></li>
               </ul>
             </div>
           </div>
@@ -36,28 +35,28 @@
                 <div class="card ">
 
                     <div class="card-deck justify-content-center">
-                      <a href="..." class="">
+                      <a href="feed.html" class="card-housemate">
                         <div class="card user">
-                          <img class="card-img-top profile" src="https://bandicootpictures.files.wordpress.com/2014/05/profilepick.jpg" alt="...">
-                          <h2 class="text-muted text-center">Shaker Quaker</h2>
+                          <img class="card-img-top profile" src="./assets/images/LiangCheng.jpg" alt="Liang Profile">
+                          <h2 class="text-muted text-center">Liang Cheng</h2>
                         </div>
                       </a>
-                      <a href="..." class="">
+                      <a href="feed.html" class="card-housemate">
                         <div class="card user">
-                          <img class="card-img-top profile" src="https://bandicootpictures.files.wordpress.com/2014/05/profilepick.jpg" alt="...">
-                          <h2 class="text-muted text-center">Shaker Quaker</h2>
+                          <img class="card-img-top profile" src="./assets/images/ClaudeNdoung.jpg" alt="Claude Profile">
+                          <h2 class="text-muted text-center">Claude Ndoung</h2>
                         </div>
                       </a>
-                      <a href="..." class="">
+                      <a href="feed.html" class="card-housemate">
                         <div class="card user">
-                          <img class="card-img-top profile" src="https://bandicootpictures.files.wordpress.com/2014/05/profilepick.jpg" alt="...">
-                          <h2 class="text-muted text-center">Shaker Quaker</h2>
+                          <img class="card-img-top profile" src="./assets/images/profile-bear.png" alt="...">
+                          <h2 class="text-muted text-center">Joe Hurowitz</h2>
                         </div>
                       </a>
-                      <a href="..." class="">
+                      <a href="feed.html" class="card-housemate">
                         <div class="card user">
-                          <img class="card-img-top profile" src="https://bandicootpictures.files.wordpress.com/2014/05/profilepick.jpg" alt="...">
-                          <h2 class="text-muted text-center">Shaker Quaker</h2>
+                          <img class="card-img-top profile" src="./assets/images/profile-horse.png" alt="...">
+                          <h2 class="text-muted text-center">Logan Powell</h2>
                         </div>
                       </a>
                     </div>
@@ -71,6 +70,22 @@
     </div>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
+    <script src="./assets/js/HousemateBoard.js"></script>
+    <script>
+      window.onload = function() {
+        window.houseBoard = new HousemateBoard();
+          $('.card-housemate').each(function(index) {
+            console.log(index + ": " + $(this).children().eq(0).children().eq(1).text());
+            $(this).click(function() {
+              var username = $(this).children().eq(0).children().eq(1).text();
+              console.log('setting identity: ' + username)
+              window.houseBoard.setIdentity(username);
+            }.bind(this))
+        })
+      }
+    </script>
   </body>
 </html>

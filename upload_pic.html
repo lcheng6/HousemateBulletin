@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
   <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Merriweather|Oswald|Poppins|Roboto+Slab" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
@@ -23,9 +23,8 @@
             <ul class="nav nav-tabs justify-content-end">
               <li class="nav-item"><a class="nav-link" href="./feed.html">Feed</a></li>
               <li class="nav-item"><a class="nav-link active" href="./upload_pic.html">Upload Photo</a></li>
-              <li class="nav-item"><a class="nav-link" href="./todos-2.html">Create Todo List</a></li>
-              <li class="nav-item"><a class="nav-link" href="./todo-feed.html">My Todos</a></li>
-              <li class="nav-item"><a class="nav-link" href="./log-out.html">Log Out</a></li>
+              <li class="nav-item"><a class="nav-link" href="./createtodos.html">Create Todo List</a></li>
+              <li class="nav-item"><a class="nav-link" href="./login.html">Log Out</a></li>
             </ul>
           </div>
         </div>
@@ -44,13 +43,17 @@
               <label>Description</label>
               <input type="text-area" class="form-control" id="post_description" placeholder="description">
             </div>
-            <div class="input-group">
-              <label class="input-group-btn">
+<!--             <div class="input-group">
+              <label id="browse-image-btn" class="input-group-btn">
                 <span class="btn btn-primary">Browse&hellip; <input id="mediaCapture" type="file"   accept="image/*,capture=camera" style="display: none;"></span>
               </label>
               <input type="text" class="form-control" style="height: 39px; margin-top: 0" readonly>
+            </div> -->
+            <input id="post_image_selector" type="file" accept="image/*,capture=camera">
+            <div class="image-preview">
+              <img id="image-preview-box">
             </div>
-            <button id="submitImage" title="Add an image" class="btn btn-primary" style="float:right; margin-top: 20px">Submit</button>
+            <button id="post_submit" title="Add an image" class="btn btn-primary" style="float:right; margin-top: 20px">Submit</button>
           </form>
 <!-- ^^^^^^^^ focus on this ^^^^^^^^   -->
         </div>
@@ -58,6 +61,16 @@
     </div>
   </div>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
+  <script type="text/javascript" src="./assets/js/date.format.js"></script>
+  <script src="./assets/js/HousemateBoard.js"></script>
+  <script>
+    window.onload = function() {
+      window.houseBoard = new HousemateBoard();
+      window.houseBoard.setupForImagePost();
+    }
+  </script>
 </body>
 </html>

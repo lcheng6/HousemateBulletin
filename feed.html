@@ -21,10 +21,10 @@
             </div>
             <div class="col-xl-9 col-lg-9 col-md-8 col-sm-12">
               <ul class="nav nav-tabs justify-content-end">
-                <li class="nav-item"><a class="nav-link" href="#">Log Out</a></li>
-                <li class="nav-item"><a class="nav-link active" href="#">Feed</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
-                <li class="nav-item"><a class="nav-link disabled" href="#">Link</a></li>
+                <li class="nav-item"><a class="nav-link active" href="./feed.html">Feed</a></li>
+                <li class="nav-item"><a class="nav-link" href="./upload_pic.html">Upload Photo</a></li>
+                <li class="nav-item"><a class="nav-link" href="./createtodos.html">Create Todo List</a></li>
+                <li class="nav-item"><a class="nav-link" href="./login.html">Log Out</a></li>
               </ul>
             </div>
           </div>
@@ -41,8 +41,45 @@
               </div>
             </div>
             <div class="col-xl-6 col-lg-6 col-md-7 col-sm-8">
-              <div class="card">
-                <div class="card framed">
+              <div class="card" id="housemate-feed">
+
+                <div class="card framed", createdtime="30">
+                  <div class="card-header">
+                    Example Todo List (Not Firebase)
+                  </div>
+                  <form class="display-todo-form" action="#">
+                    <div class="form-group todoItemHeader">
+                    
+                      <div id="todo-entries">
+                        <div class="todoItemEntry form-group">
+                          <div class="input-group" index="0">
+                            <span class="input-group-addon">
+                              <input type="checkbox" aria-label="done">
+                            </span>
+                            <input disabled="disabled" type="text" class="form-control" aria-label="todo" value="Item 1">
+                            <div class="chip" style="position: absolute top">
+                              <span>Liang</span> 
+                            </div>
+                            <button class="btn btn-primary">I'll do it</button>
+                          </div>
+                        </div>
+
+                        <div class="todoItemEntry form-group">
+                          <div class="input-group" index="1">
+                            <span class="input-group-addon">
+                              <input type="checkbox" aria-label="done">
+                            </span>
+                            <input disabled="disabled" type="text" class="form-control" aria-label="todo" value="Item 2">
+                            <button class="btn btn-primary">I'll do it</button>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </form>    
+                </div>
+
+                <div class="card framed" createdtime="20">
                   <div class="card-header">
                     Makers on the march
                   </div>
@@ -56,7 +93,7 @@
                   </div>
                 </div>
 
-                <div class="card framed">
+                <div class="card framed" createdtime="10">
                   <div class="card-header">
                     Makers on the march... Again!
                   </div>
@@ -79,6 +116,18 @@
     </div>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
+    <script type="text/javascript" src="./assets/js/date.format.js"></script>
+    <script src="./assets/js/HousemateBoard.js"></script>
+    <script>
+    window.onload = function() {
+      window.houseBoard = new HousemateBoard();
+      window.houseBoard.loadImagePosts();
+      window.houseBoard.loadTodoLists();
+    }
+    </script>
   </body>
 </html>
