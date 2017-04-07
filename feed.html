@@ -121,19 +121,25 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="./assets/js/async.js"></script>
 
     <script src="https://www.gstatic.com/firebasejs/3.7.3/firebase.js"></script>
     <script type="text/javascript" src="./assets/js/date.format.js"></script>
     <script src="./assets/js/HousemateBoard.js"></script>
     <script src="./assets/js/WeatherData.js"></script>
+    <script src="./assets/js/DeviceLocation.js"></script>
+
     <script>
     window.onload = function() {
-      window.houseBoard = new HousemateBoard();
-      window.houseBoard.loadImagePosts();
-      window.houseBoard.loadTodoLists();
+      // window.houseBoard = new HousemateBoard();
+      // window.houseBoard.loadImagePosts();
+      // window.houseBoard.loadTodoLists();
 
-      window.weatherData = new WeatherData();
-      window.weatherData.getWeatherData();
+      window.deviceLocation = new DeviceLocation();
+      window.deviceLocation.getLocation();
+
+      // window.weatherData = new WeatherData();
+      // window.weatherData.getWeatherData();
     }
     </script>
   </body>
