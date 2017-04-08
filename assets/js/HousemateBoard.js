@@ -381,10 +381,20 @@ HousemateBoard.prototype.displayTodoList = function(key, title, source, todoItem
   // newTodoList.children().eq(1).children().eq(0).children(0).eq(0).children(".todoItemEntry").each(function(i) { 
   //   console.log("todoItemEntry: " + i)
   // });
-  //pointing to the todo entries within the todo framed card
+  //pointing to the todo entries within the todo framed card and put the assignee information in
+
   newTodoList.find(".todoItemEntry").each(function(i) { 
-    console.log("todoItemEntry: " + i)
-    console.log(todoItemsArray[i])
+    var todoItemEntry = newTodoList.find(".todoItemEntry").eq(i);
+
+    var todoItem = todoItemsArray[i]
+    if(todoItem.assignee) {
+      if (todoItemEntry.find(".chip").length == 0) {
+        //there is no chip. put a new chip in
+
+        todoItemEntry.find(".input-group").eq(0).append(HousemateBoard.DISPLAY_TODOITEM_ASSIGNEE_TEMPLATE)
+      }
+      todoItemEntry.find(".chip").eq(0).text(todoItem.assignee);
+    }
   });
   
 

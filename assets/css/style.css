@@ -361,7 +361,7 @@ img {
 
 .chip {
     /*display: inline-block;*/
-    padding: 0 20px;
+    padding: 0 15px;
     height: 23px;
     font-size: 16px;
     /*line-height: 50px;*/
@@ -371,7 +371,7 @@ img {
     font-family: Poppins;
     position:absolute;
     bottom:8px;
-    right:100px;
+    right:90px;
     z-index:2;
 }
 
