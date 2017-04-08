@@ -40,7 +40,7 @@ DeviceLocation.prototype.showPosition = function(position) {
 
 DeviceLocation.prototype.getCityName = function(response) {
 	var address_components = _.compact(response.address_components);
-	return address_components[2].long_name+ ", " + address_components[5].short_name
+	return address_components[3].long_name+ ", " + address_components[5].short_name
 }
 
 DeviceLocation.prototype.displayCityName = function(city_name) {
