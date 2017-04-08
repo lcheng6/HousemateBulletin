@@ -13,7 +13,7 @@ function WeatherData() {
 // 	description,
 //	weather icon,
 // }
-WeatherData.prototype.getWeatherData = function(event) {
+WeatherData.prototype.getWeatherDataByCity = function() {
 	// This is our API key
 	var APIKey = "166a433c57516f51dfab1f7edaed8413";
 
@@ -28,8 +28,21 @@ WeatherData.prototype.getWeatherData = function(event) {
     }.bind(this))
 }
 
+WeatherData.prototype.getWeatherDataByLatLon = function(lat, lon) {
+	// This is our API key
+	var APIKey = "166a433c57516f51dfab1f7edaed8413";
+
+	var queryURL = "http://api.openweathermap.org/data/2.5/weather?" +
+       "lat="+lat+"&lon="+lon+"&units=imperial&appid=" + APIKey;
+    $.ajax( {
+    	url:queryURL,
+    	method: "GET"
+    })
+    .done(function(response) {
+    	this.displayWeatherData(response);
+    }.bind(this))
+}
 WeatherData.prototype.displayWeatherData = function(response) {
-	$("#weather-list-group > .city").text("city: " + "Washington DC")
 	$("#weather-list-group > .wind").text("wind: " + response.wind.speed+ "mph " + this.formWindDirectionString(response.wind.deg));
 	$("#weather-list-group > .humidity").text("humidity: " + response.main.humidity)
 	$("#weather-list-group > .temp").text("temp: " + response.main.humidity + " F")	
