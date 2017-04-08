@@ -362,23 +362,30 @@ HousemateBoard.prototype.displayTodoList = function(key, title, source, todoItem
     newTodoList.attr('id', key);
     newTodoList.attr('createdtime', createdtime.toString());
 
-    //TODO: modify the postion of the new Todo List
+    //TODO: modify the postion of the new Todo List according to created time
 
     $(HousemateBoard.HOUSEMATE_FEED_SELECTOR).prepend(newTodoList);
 
     newTodoList.children().eq(0).text(title);
 
     todoItemsArray.forEach(function(todoItem) {
-      var newItemItemHtml = $(HousemateBoard.DISPLAY_TODOITEM_TEMPLATE);
-      newItemItemHtml.children().eq(0).children().eq(1).val(todoItem.description)
-      newTodoList.find('.todo-entries').append(newItemItemHtml);
+      var newTodoItemHtml = $(HousemateBoard.DISPLAY_TODOITEM_TEMPLATE);
+      newTodoItemHtml.children().eq(0).children().eq(1).val(todoItem.description)
+      newTodoList.find('.todo-entries').append(newTodoItemHtml);
+      // debugger;
+      // newTodoItemHtml.find(':checkbox').eq(0).click(this.todoItemCompletedCheckBoxClick.bind(this))
+      // newTodoItemHtml.find('button').eq(0).click(this.todoItemAssignToMeBtnClick.bind(this))
+
     })
+    newTodoList.find(':checkbox').click(this.todoItemCompletedCheckBoxClick.bind(this))
+    newTodoList.find('button').click(this.todoItemAssignToMeBtnClick.bind(this))
+
     var myDate = new Date(createdtime);
     newTodoList.children().eq(2).children().eq(0).text(myDate.format(HousemateBoard.DATE_TIME_FORMAT));
     newTodoList.children().eq(2).children().eq(2).text(source);
+    //Todo add click handler for checkbox and "I'll do it " button
   }
 
-  // debugger;
   //pointing to the todo entries within the todo framed card
   // newTodoList.children().eq(1).children().eq(0).children(0).eq(0).children(".todoItemEntry").each(function(i) { 
   //   console.log("todoItemEntry: " + i)
@@ -406,35 +413,30 @@ HousemateBoard.prototype.displayTodoList = function(key, title, source, todoItem
 
   });
   
-
 }
+
+//event handler for check box within the feed.html's todo list
+//once clicked, it should go an update the database
 HousemateBoard.prototype.todoItemCompletedCheckBoxClick = function(event) {
   event.preventDefault();
   var eventTarget = $(event.target);
   var todoItemEntryAncestor = eventTarget.parent().parent().parent();
-  this.readTodoItemEntryFromHtml(todoItemEntryAncestor);
+
+  console.log("checkbox handler")
+  
 }
 
-//get input of a jQuery object, read the object for completed status, todo item name, 
-//assignee
-HousemateBoard.prototype.readTodoItemEntryFromHtml = function(todoItemEntryHtml) {
-  var result = {};
-  result.completed = todoItemEntryHtml.children().eq(0).children().eq(0).children().eq(0).prop('checked');
-  result.description =  todoItemEntryHtml.children().eq(0).children().eq(1).val();
-  if (todoItemEntryHtml.children().eq(0).children().eq(2).has("span").length) {
-    result.assignee = todoItemEntryHtml.children().eq(0).children().eq(2).children().eq(0).text();
-  }
-  return result;
-  //result.assignee
+//event handler for "I'll do it" button ithin the feed.html's todo list
+//once clicked, it should go an update the database
+HousemateBoard.prototype.todoItemAssignToMeBtnClick = function(event) {
+  event.preventDefault();
+  var eventTarget = $(event.target);
+  var todoItemEntryAncestor = eventTarget.parent().parent().parent();
+
+  console.log("Assign to me handler")
 }
 
-// HousemateBoard.prototype.loadTodoLists = function() {
-//   // $('div.todoItemEntry > div.input-group > span > input[type="checkbox"]').click(this.todoItemCompletedCheckBoxClick.bind(this))
 
-//   // $('div.todoItemEntry > div.input-group > button').click(this.todoItemAssignToSelfBtnClick.bind(this))
-
-
-// }
 
 
 
