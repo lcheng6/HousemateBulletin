@@ -43,13 +43,31 @@ WeatherData.prototype.getWeatherDataByLatLon = function(lat, lon) {
     }.bind(this))
 }
 WeatherData.prototype.displayWeatherData = function(response) {
+	
 	$("#weather-list-group > .wind").text("wind: " + response.wind.speed+ "mph " + this.formWindDirectionString(response.wind.deg));
 	$("#weather-list-group > .humidity").text("humidity: " + response.main.humidity)
 	$("#weather-list-group > .temp").text("temp: " + response.main.humidity + " F")	
 	$("#weather-list-group > .description").text(response.weather[0].description)
 
 	//TODO: weather icon. 
-	//$("#weather-list-group > .description").text(response.weather[0].description)
+	
+	var weatherIconUrl = "./assets/images/Cloud.png";
+	switch(response.weather[0].main) {
+		case "Clouds":
+			weatherIconUrl = "./assets/images/Cloud.png";
+			break;
+		case "Sunny":
+			weatherIconUrl = "./assets/images/Cloud.png";
+			break;
+		case "Rain":
+			weatherIconUrl = "./assets/images/Rain.png";
+			break;
+		case "Snow":
+			weatherIconUrl = "./assets/images/snow.png";
+			break;
+	}
+	//$("#weather-list-group > .weatherIcon").text("");
+	$("#weather-list-group > .weatherIcon > img").attr("src", weatherIconUrl)
 }
 
 WeatherData.prototype.formWindDirectionString = function (windDeg) {

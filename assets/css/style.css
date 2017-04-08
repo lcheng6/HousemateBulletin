@@ -398,3 +398,8 @@ img {
 .display-todo-form {
   padding:20px;
 }
+
+#weather-list-group > div > img {
+  display:block;
+  margin-left: 20px
+}
