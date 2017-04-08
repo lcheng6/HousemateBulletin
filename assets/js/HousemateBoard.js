@@ -183,7 +183,8 @@ HousemateBoard.prototype.setIdentity = function(username) {
   localStorage.setItem('username', username)
 }
 
-HousemateBoard.prototype.getIdentity = function(username) {
+//this function reads out the identity
+HousemateBoard.prototype.getIdentity = function() {
   var username = localStorage.getItem('username')
   if (username) {
     return username;
@@ -193,8 +194,9 @@ HousemateBoard.prototype.getIdentity = function(username) {
   }
 }
 
-HousemateBoard.prototype.getIdentityFirstName = function(username) {
-  var username = localStorage.getItem('username')
+
+//this function is used just getting the first name of identity, currently not used
+HousemateBoard.prototype.getFirstName = function(username) {
   if (username) {
     firstname = _.split(username, ' ');
     firstname = firstname[0]
@@ -386,15 +388,22 @@ HousemateBoard.prototype.displayTodoList = function(key, title, source, todoItem
   newTodoList.find(".todoItemEntry").each(function(i) { 
     var todoItemEntry = newTodoList.find(".todoItemEntry").eq(i);
 
-    var todoItem = todoItemsArray[i]
+    var todoItem = todoItemsArray[i];
+
+    //the following section update the ".chip"
     if(todoItem.assignee) {
       if (todoItemEntry.find(".chip").length == 0) {
         //there is no chip. put a new chip in
-
         todoItemEntry.find(".input-group").eq(0).append(HousemateBoard.DISPLAY_TODOITEM_ASSIGNEE_TEMPLATE)
       }
+      //set chip value to assignee
       todoItemEntry.find(".chip").eq(0).text(todoItem.assignee);
     }
+    //the next one will update the check box
+    if(todoItemEntry.find(":checkbox").length>=1) {
+      todoItemEntry.find(":checkbox").eq(0).prop('checked', todoItem.completed)
+    }
+
   });
   
 
