@@ -45,7 +45,7 @@ WeatherData.prototype.getWeatherDataByLatLon = function(lat, lon) {
 WeatherData.prototype.displayWeatherData = function(response) {
 	
 	$("#weather-list-group > .wind").text("wind: " + response.wind.speed+ "mph " + this.formWindDirectionString(response.wind.deg));
-	$("#weather-list-group > .humidity").text("humidity: " + response.main.humidity)
+	$("#weather-list-group > .humidity").text("humidity: " + response.main.humidity + "%")
 	$("#weather-list-group > .temp").text("temp: " + response.main.humidity + " F")	
 	$("#weather-list-group > .description").text(response.weather[0].description)
 
