@@ -340,7 +340,7 @@ HousemateBoard.prototype.displayTodoList = function(key, title, source, todoItem
   var newTodoList = $('#'+ key);
 
   if (newTodoList.length >=1) {
-    //the todo list element already exists, just modiffy the contnet.
+    //the todo list element already exists, just modiffy the content.
   }else {
     //create new Todo List
     newTodoList = $(HousemateBoard.DISPLAY_TODOLIST_TEMPLATE);
@@ -350,17 +350,19 @@ HousemateBoard.prototype.displayTodoList = function(key, title, source, todoItem
     //TODO: modify the postion of the new Todo List
 
     $(HousemateBoard.HOUSEMATE_FEED_SELECTOR).prepend(newTodoList);
-  }
-  newTodoList.children().eq(0).text(title);
 
-  todoItemsArray.forEach(function(todoItem) {
-    var newItemItemHtml = $(HousemateBoard.DISPLAY_TODOITEM_TEMPLATE);
-    newItemItemHtml.children().eq(0).children().eq(1).val(todoItem.description)
-    newTodoList.find('.todo-entries').append(newItemItemHtml);
-  })
-  var myDate = new Date(createdtime);
-  newTodoList.children().eq(2).children().eq(0).text(myDate.format(HousemateBoard.DATE_TIME_FORMAT));
-  newTodoList.children().eq(2).children().eq(2).text(source);
+    newTodoList.children().eq(0).text(title);
+
+    todoItemsArray.forEach(function(todoItem) {
+      var newItemItemHtml = $(HousemateBoard.DISPLAY_TODOITEM_TEMPLATE);
+      newItemItemHtml.children().eq(0).children().eq(1).val(todoItem.description)
+      newTodoList.find('.todo-entries').append(newItemItemHtml);
+    })
+    var myDate = new Date(createdtime);
+    newTodoList.children().eq(2).children().eq(0).text(myDate.format(HousemateBoard.DATE_TIME_FORMAT));
+    newTodoList.children().eq(2).children().eq(2).text(source);
+  }
+  
 
 }
 HousemateBoard.prototype.todoItemCompletedCheckBoxClick = function(event) {
