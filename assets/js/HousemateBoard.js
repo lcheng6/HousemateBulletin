@@ -412,7 +412,6 @@ HousemateBoard.prototype.displayTodoList = function(key, title, source, todoItem
     //the next one will update the check box
     //debugger;
     if(todoItemEntry.find(":checkbox").length>=1) {
-      debugger;
       todoItemEntry.find(":checkbox").eq(0).prop('checked', todoItem.completed)
     }
 
@@ -465,14 +464,14 @@ HousemateBoard.prototype.todoItemAssignToMeBtnClick = function(event) {
   event.preventDefault();
   var eventTarget = $(event.target);
 
-  var todoItemEntryAncestor = eventTarget.parent().parent();
+  var todoItemEntryAncestor = eventTarget.parent().parent().parent();
   var inputGroupAncestor = eventTarget.parent();
   var cardFramedAncestor = todoItemEntryAncestor.parent().parent().parent();
 
   var todoItemId = cardFramedAncestor.attr('id')
   var assignee = this.getIdentity();
   var index = inputGroupAncestor.attr('index');
-  debugger;
+  //debugger;
   console.log("Assign to me handler")
   this.updateFireBaseTodoItemAssigneeByIndex(assignee, index, todoItemId)
 }
