@@ -420,10 +420,29 @@ HousemateBoard.prototype.displayTodoList = function(key, title, source, todoItem
 HousemateBoard.prototype.todoItemCompletedCheckBoxClick = function(event) {
   event.preventDefault();
   var eventTarget = $(event.target);
+
   var todoItemEntryAncestor = eventTarget.parent().parent().parent();
+  var inputGroupAncestor = eventTarget.parent().parent();
+  var cardFramedAncestor = todoItemEntryAncestor.parent().parent().parent().parent();
+
+  var todoItemId = cardFramedAncestor.attr('id')
 
   console.log("checkbox handler")
+  this.updateFireBaseTodoItemCompletedByIndex(true, 1, todoItemId)
   
+}
+
+HousemateBoard.prototype.updateFireBaseTodoItemCompletedByIndex = function(completed, index, key) {
+  // var updates = {};
+  // updateData = {
+  //   list: todoListArray
+  // }
+  // updates['/totolists/'+ key] = {list}
+
+  firebase.database().ref('/todolists/' + key).once('value').then(function(snapshot) {
+    var list = snapshot.val().list
+    debugger;
+  })
 }
 
 //event handler for "I'll do it" button ithin the feed.html's todo list
@@ -431,13 +450,17 @@ HousemateBoard.prototype.todoItemCompletedCheckBoxClick = function(event) {
 HousemateBoard.prototype.todoItemAssignToMeBtnClick = function(event) {
   event.preventDefault();
   var eventTarget = $(event.target);
+
   var todoItemEntryAncestor = eventTarget.parent().parent().parent();
+  var inputGroupAncestor = eventTarget.parent().parent();
+  var cardFramedAncestor = todoItemEntryAncestor.parent().parent().parent().parent();
 
   console.log("Assign to me handler")
 }
 
 
+HousemateBoard.prototype.updateFireBaseTodoItemAssigneeByIndex = function(assignee, index, key) {
 
-
+}
 
 
