@@ -76,7 +76,7 @@ HousemateBoard.prototype.previewImage = function(event) {
 //kicked off by the submit button, this function will read the parent form.
 //get the value of title, description, and file value of the file input.  
 //then post it to the feed.  
-//TODO: need to integrate identity (from) into this function. 
+
 HousemateBoard.prototype.saveImageMessage = function(event) {
 
   event.preventDefault();
@@ -192,6 +192,19 @@ HousemateBoard.prototype.getIdentity = function(username) {
     return "";
   }
 }
+
+HousemateBoard.prototype.getIdentityFirstName = function(username) {
+  var username = localStorage.getItem('username')
+  if (username) {
+    firstname = _.split(username, ' ');
+    firstname = firstname[0]
+    return firstname;
+  }else {
+    console.log('Sign in First');
+    return "";
+  }
+}
+
 
 HousemateBoard.TODO_TITLE_SELECTOR = "#todo-title"
 HousemateBoard.CREATE_TODO_ENTRIES_SELECTOR = "#todo-entries"
@@ -342,7 +355,7 @@ HousemateBoard.prototype.displayTodoList = function(key, title, source, todoItem
   if (newTodoList.length >=1) {
     //the todo list element already exists, just modiffy the content.
   }else {
-    //create new Todo List
+    //create the html for Todo List
     newTodoList = $(HousemateBoard.DISPLAY_TODOLIST_TEMPLATE);
     newTodoList.attr('id', key);
     newTodoList.attr('createdtime', createdtime.toString());
@@ -362,6 +375,17 @@ HousemateBoard.prototype.displayTodoList = function(key, title, source, todoItem
     newTodoList.children().eq(2).children().eq(0).text(myDate.format(HousemateBoard.DATE_TIME_FORMAT));
     newTodoList.children().eq(2).children().eq(2).text(source);
   }
+
+  // debugger;
+  //pointing to the todo entries within the todo framed card
+  // newTodoList.children().eq(1).children().eq(0).children(0).eq(0).children(".todoItemEntry").each(function(i) { 
+  //   console.log("todoItemEntry: " + i)
+  // });
+  //pointing to the todo entries within the todo framed card
+  newTodoList.find(".todoItemEntry").each(function(i) { 
+    console.log("todoItemEntry: " + i)
+    console.log(todoItemsArray[i])
+  });
   
 
 }
