@@ -368,10 +368,13 @@ HousemateBoard.prototype.displayTodoList = function(key, title, source, todoItem
 
     newTodoList.children().eq(0).text(title);
 
+    var todoItemIndex = 0;
     todoItemsArray.forEach(function(todoItem) {
       var newTodoItemHtml = $(HousemateBoard.DISPLAY_TODOITEM_TEMPLATE);
       newTodoItemHtml.children().eq(0).children().eq(1).val(todoItem.description)
+      newTodoItemHtml.children().eq(0).attr('index', todoItemIndex)
       newTodoList.find('.todo-entries').append(newTodoItemHtml);
+      todoItemIndex++;
       // debugger;
       // newTodoItemHtml.find(':checkbox').eq(0).click(this.todoItemCompletedCheckBoxClick.bind(this))
       // newTodoItemHtml.find('button').eq(0).click(this.todoItemAssignToMeBtnClick.bind(this))
@@ -407,7 +410,9 @@ HousemateBoard.prototype.displayTodoList = function(key, title, source, todoItem
       todoItemEntry.find(".chip").eq(0).text(todoItem.assignee);
     }
     //the next one will update the check box
+    //debugger;
     if(todoItemEntry.find(":checkbox").length>=1) {
+      debugger;
       todoItemEntry.find(":checkbox").eq(0).prop('checked', todoItem.completed)
     }
 
@@ -425,10 +430,14 @@ HousemateBoard.prototype.todoItemCompletedCheckBoxClick = function(event) {
   var inputGroupAncestor = eventTarget.parent().parent();
   var cardFramedAncestor = todoItemEntryAncestor.parent().parent().parent().parent();
 
+  var completed = eventTarget.prop('checked');
+  var index = inputGroupAncestor.attr('index');
   var todoItemId = cardFramedAncestor.attr('id')
 
+
   console.log("checkbox handler")
-  this.updateFireBaseTodoItemCompletedByIndex(true, 1, todoItemId)
+  debugger;
+  this.updateFireBaseTodoItemCompletedByIndex(completed, index, todoItemId)
   
 }
 
@@ -439,10 +448,15 @@ HousemateBoard.prototype.updateFireBaseTodoItemCompletedByIndex = function(compl
   // }
   // updates['/totolists/'+ key] = {list}
 
-  firebase.database().ref('/todolists/' + key).once('value').then(function(snapshot) {
-    var list = snapshot.val().list
-    debugger;
-  })
+  var updatelist
+  firebase.database().ref('/todolists/' + key).once('value')
+    .then(function(snapshot) {
+      updatelist = snapshot.val().list
+      updatelist[index].completed = completed
+      
+      return snapshot.ref.update({"list":updatelist})
+    })
+    
 }
 
 //event handler for "I'll do it" button ithin the feed.html's todo list
@@ -451,16 +465,30 @@ HousemateBoard.prototype.todoItemAssignToMeBtnClick = function(event) {
   event.preventDefault();
   var eventTarget = $(event.target);
 
-  var todoItemEntryAncestor = eventTarget.parent().parent().parent();
-  var inputGroupAncestor = eventTarget.parent().parent();
-  var cardFramedAncestor = todoItemEntryAncestor.parent().parent().parent().parent();
+  var todoItemEntryAncestor = eventTarget.parent().parent();
+  var inputGroupAncestor = eventTarget.parent();
+  var cardFramedAncestor = todoItemEntryAncestor.parent().parent().parent();
 
+  var todoItemId = cardFramedAncestor.attr('id')
+  var assignee = this.getIdentity();
+  var index = inputGroupAncestor.attr('index');
+  debugger;
   console.log("Assign to me handler")
+  this.updateFireBaseTodoItemAssigneeByIndex(assignee, index, todoItemId)
 }
 
 
 HousemateBoard.prototype.updateFireBaseTodoItemAssigneeByIndex = function(assignee, index, key) {
 
+  var newlist, data
+  firebase.database().ref('/todolists/' + key).once('value')
+    .then(function(snapshot) {
+      newlist = snapshot.val().list
+      newlist[index].assignee = assignee
+      
+      return snapshot.ref.update({"list":newlist})
+    })
+    
 }
 
 
