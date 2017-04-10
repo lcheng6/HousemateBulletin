@@ -51,7 +51,6 @@ WeatherData.prototype.displayWeatherData = function(response) {
 
 	//TODO: weather icon. 
 	
-	debugger;
 	var weatherIconUrl = "./assets/images/Sun.png";
 	switch(response.weather[0].main) {
 		case "Clouds":

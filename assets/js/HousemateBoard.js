@@ -422,7 +422,7 @@ HousemateBoard.prototype.displayTodoList = function(key, title, source, todoItem
 //event handler for check box within the feed.html's todo list
 //once clicked, it should go an update the database
 HousemateBoard.prototype.todoItemCompletedCheckBoxClick = function(event) {
-  event.preventDefault();
+  //event.preventDefault();
   var eventTarget = $(event.target);
 
   var todoItemEntryAncestor = eventTarget.parent().parent().parent();
