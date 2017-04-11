@@ -11,10 +11,9 @@ We reflected about the interaction of 4 housemates...  Back when we had housemat
 
 However, when you have roommates who have different schedules, getting the entire group together to sit down and make a list and ensuring everyone pulling in their fair share is difficult.  This is why we made our todo list shared and real-time updating.  Any time one housemate grabs an todo item with "I'll Do It" button; the task assignment is instantly reflected on all housemates' feed in real-time.  No page refresh needed.   
 
-
+![Housemates Bulletin Feed Page](https://github.com/lcheng6/HousemateBulletin/blob/master/screenshots/intro.png)
 
 Having a party should be fun; planning it and making it happen shouldn't be a drudgery.  We present Housemate Bulletin!
-
 
 ## Site
 Project is deployed on [Heroku](https://team2-housemate-bulletin.herokuapp.com/login.html)
