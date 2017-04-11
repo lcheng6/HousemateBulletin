@@ -1,6 +1,6 @@
 # HousemateBulletin
 
-A social network for a housemates of 4, built with JQuery, AJAX and Google Firebase
+A social network for a housemates of 4, built with JQuery, AJAX, WebSocket, and Google Firebase
 
 ## Description of the project
 What we have set out to do is to create a social network for a house of 4 roommates.  Initially we set out to create a small Facebook clone, in which we can share pictures within the group of housemates.  
