@@ -17,7 +17,7 @@ WeatherData.prototype.getWeatherDataByCity = function() {
 	// This is our API key
 	var APIKey = "166a433c57516f51dfab1f7edaed8413";
 
-	var queryURL = "http://api.openweathermap.org/data/2.5/weather?" +
+	var queryURL = "https://api.openweathermap.org/data/2.5/weather?" +
        "q=Washington,District+of+Columbia&units=imperial&appid=" + APIKey;
     $.ajax( {
     	url:queryURL,
