@@ -5,11 +5,13 @@ function HousemateBoard() {
 }
 
 
-
+//Some declarations to help with posts and todolist inserts
 HousemateBoard.HOUSEMATE_FEED_SELECTOR = "#housemate-feed";
 HousemateBoard.DATE_TIME_FORMAT = 'm/d/Y h:i a';
 HousemateBoard.LOADING_IMAGE_URL = 'https://www.google.com/images/spin-32.gif';
 
+
+//Got to initialize the database.  put this code here to avoid putting it into every html page
 HousemateBoard.prototype.initFirebase = function() {
 	// (DEVELOPER): Initialize Firebase.
     var config = {
@@ -28,6 +30,7 @@ HousemateBoard.prototype.initFirebase = function() {
   this.todolistsRef = this.database.ref('todolists');
 };
 
+//Set to post image in the page upload_pic.html
 HousemateBoard.prototype.setupForImagePost = function() {
   $('#post_image_selector').change(window.houseBoard.previewImage.bind(this));
   $('#post_submit').click(window.houseBoard.saveImageMessage.bind(this))
@@ -50,7 +53,7 @@ HousemateBoard.prototype.loadImagePosts = function() {
 };
 
 
-//preview image in an <img> before we save it onto Firebase server
+//preview image in an <img> inside upload_pic.html before we save it onto Firebase server
 HousemateBoard.prototype.previewImage = function(event) {
   event.preventDefault();
 
@@ -73,6 +76,7 @@ HousemateBoard.prototype.previewImage = function(event) {
     debugger;
   }
 }
+
 //kicked off by the submit button, this function will read the parent form.
 //get the value of title, description, and file value of the file input.  
 //then post it to the feed.  
@@ -118,6 +122,8 @@ HousemateBoard.prototype.saveImageMessage = function(event) {
 
 };
 
+//This html template helps with inserting a "framed card" to post a picture based post into 
+//feed.html
 HousemateBoard.POST_TEMPLATE = 
   '<div class="card framed">' + 
     '<div class="card-header"></div>' + 
@@ -133,6 +139,7 @@ HousemateBoard.POST_TEMPLATE =
   '</div>';
 
 
+//display the post in feed.html. 
 HousemateBoard.prototype.displayPost = function(key, title, description, source, createdtime, imageUri) {
   var newPost = $('#'+key);
   var img;
@@ -166,7 +173,9 @@ HousemateBoard.prototype.displayPost = function(key, title, description, source,
 
 }
 
-
+//a call back function used inside feed.html.  This callback after a picture is properly loaded 
+//into the firebase data store. and will translate the gs:// uri into a https:// uri.  
+//and update the https uri into the feed.html page
 HousemateBoard.prototype.setImageUrl = function(imageUri, img) {
   if(imageUri.startsWith('gs://')) {
     img.attr('src', HousemateBoard.LOADING_IMAGE_URL);
@@ -179,11 +188,12 @@ HousemateBoard.prototype.setImageUrl = function(imageUri, img) {
   }
 }
 
+//used by login.html to set the identity.  
 HousemateBoard.prototype.setIdentity = function(username) {
   localStorage.setItem('username', username)
 }
 
-//this function reads out the identity
+//this function reads out the identity.  Used by all pages other than login.html
 HousemateBoard.prototype.getIdentity = function() {
   var username = localStorage.getItem('username')
   if (username) {
@@ -208,6 +218,7 @@ HousemateBoard.prototype.getFirstName = function(username) {
 }
 
 
+//used by createtodo.html and feed.html to display and create todo items
 HousemateBoard.TODO_TITLE_SELECTOR = "#todo-title"
 HousemateBoard.CREATE_TODO_ENTRIES_SELECTOR = "#todo-entries"
 HousemateBoard.ADD_NEW_ITEM_BTN_SELECTOR = '#add-new-item-btn'
@@ -237,6 +248,7 @@ HousemateBoard.prototype.addNewTodoItemBtnClick = function (event) {
 
 }
 
+//submit todo list button callback, used in createtodos.html
 HousemateBoard.prototype.submitTodoListBtnClick = function (event) {
 
   event.preventDefault();
@@ -390,10 +402,7 @@ HousemateBoard.prototype.displayTodoList = function(key, title, source, todoItem
   }
 
   //pointing to the todo entries within the todo framed card
-  // newTodoList.children().eq(1).children().eq(0).children(0).eq(0).children(".todoItemEntry").each(function(i) { 
-  //   console.log("todoItemEntry: " + i)
-  // });
-  //pointing to the todo entries within the todo framed card and put the assignee information in
+
 
   newTodoList.find(".todoItemEntry").each(function(i) { 
     var todoItemEntry = newTodoList.find(".todoItemEntry").eq(i);
@@ -441,11 +450,6 @@ HousemateBoard.prototype.todoItemCompletedCheckBoxClick = function(event) {
 }
 
 HousemateBoard.prototype.updateFireBaseTodoItemCompletedByIndex = function(completed, index, key) {
-  // var updates = {};
-  // updateData = {
-  //   list: todoListArray
-  // }
-  // updates['/totolists/'+ key] = {list}
 
   var updatelist
   firebase.database().ref('/todolists/' + key).once('value')
