@@ -323,6 +323,7 @@ HousemateBoard.prototype.loadTodoLists = function() {
   this.todolistsRef.limitToLast(12).on('child_changed', setTodoList)
 }
 
+//used by feed.page to debug todoitem assign to self button
 HousemateBoard.prototype.todoItemAssignToSelfBtnClick = function(event) {
   event.preventDefault();
 
@@ -332,6 +333,7 @@ HousemateBoard.prototype.todoItemAssignToSelfBtnClick = function(event) {
   debugger;
 }
 
+//used by feed.html to properly todolist
 HousemateBoard.DISPLAY_TODOLIST_TEMPLATE =
   '<div class="card framed">'+
     '<div class="card-header"></div>' + 
@@ -347,6 +349,7 @@ HousemateBoard.DISPLAY_TODOLIST_TEMPLATE =
     '</div>' + 
   '</div>';
 
+//used by feed.html to properly an individual todo item inside a todo list
 HousemateBoard.DISPLAY_TODOITEM_TEMPLATE = 
   '<div class="todoItemEntry form-group">' + 
     '<div class="input-group" index="0">' +
@@ -358,11 +361,13 @@ HousemateBoard.DISPLAY_TODOITEM_TEMPLATE =
     '</div>' + 
   '</div>';
 
+//used to display the chip of name of assignee
 HousemateBoard.DISPLAY_TODOITEM_ASSIGNEE_TEMPLATE = 
   '<div class="chip" style="position: absolute top">' + 
     '<span></span>' + 
   '</div>';
 
+//used by feed.html to display todolist. 
 HousemateBoard.prototype.displayTodoList = function(key, title, source, todoItemsArray, createdtime) {
   var newTodoList = $('#'+ key);
 
